@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO -->
+<meta name="description" content="GATE 2026 notes, syllabus and preparation platform for Computer Science students.">
+<meta name="keywords" content="GATE Notes, DBMS Notes, OS Notes, GATE Preparation">
+
+<title>Future X - GATE 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#0a0a0a; color:#fff; line-height:1.6; }
+
+nav {
+  position:sticky; top:0; background:#111;
+  padding:0.8rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.logo { font-size:1.8rem; color:#00ffff; font-weight:700; }
+
+.nav-links {
+  list-style:none;
+  display:flex;
+  gap:1.5rem;
+}
+.nav-links a { color:#ccc; }
+
+.cta-btn {
+  padding:0.5rem 1.5rem;
+  background:#00ffff;
+  color:#000;
+  border:none;
+  border-radius:5px;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+.hamburger { display:none; flex-direction:column; gap:5px; }
+.hamburger div { width:25px; height:3px; background:#00ffff; }
+
+@media(max-width:768px){
+  .nav-links { display:none; }
+}
+
+/* CONTAINER */
+.container {
+  max-width:1100px;
+  margin:50px auto;
+  padding:20px;
+}
+
+/* CARD */
+.card {
+  background:#111;
+  padding:25px;
+  margin-bottom:20px;
+  border-radius:10px;
+}
+
+.card h2 { color:#00ffff; margin-bottom:10px; }
+.card p { color:#ccc; }
+
+.btn {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 20px;
+  background:#00ffff;
+  color:black;
+  border-radius:5px;
+  text-decoration:none;
+}
+
+/* ACCORDION */
+.accordion {
+  background:#111;
+  color:white;
+  padding:15px;
+  width:100%;
+  border:none;
+  text-align:left;
+  margin-top:10px;
+}
+
+.panel {
+  display:none;
+  padding:10px;
+  background:#000;
+}
+
+/* TABLE */
+table { width:100%; margin-top:20px; }
+td { padding:10px; border-bottom:1px solid #444; }
+
+/* FOOTER */
+footer {
+  background:#111;
+  padding:30px;
+  text-align:center;
+  color:#777;
+}
+footer a { color:#00ffff; }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Future X</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gate.html">GATE</a></li>
+    <li><a href="notes/dbms-notes.html">DBMS</a></li>
+  </ul>
+
+  <button class="cta-btn">Login</button>
+</nav>
+
+<!-- INTRO -->
+<div class="container">
+  <h1 style="color:#00ffff;">GATE 2026 Preparation Guide</h1>
+  <p style="color:#ccc;">
+    Prepare for GATE 2026 with syllabus, notes, and structured learning.
+  </p>
+</div>
+
+<!-- CARDS -->
+<div class="container">
+
+  <div class="card">
+    <h2>About GATE</h2>
+    <p>GATE is a national-level exam conducted by IITs for MTech and PSU jobs.</p>
+  </div>
+
+  <div class="card">
+    <h2>Why Take GATE?</h2>
+    <p>It helps in higher studies and job opportunities.</p>
+  </div>
+
+  <div class="card">
+    <h2>Start Learning</h2>
+    <a href="notes/dbms-notes.html" class="btn">DBMS Notes</a>
+  </div>
+
+</div>
+
+<section style="text-align:center; margin-top:30px;">
+
+  <h2 style="color:#00ffff;">Select Syllabus</h2>
+
+  <div style="margin-top:20px;">
+    <a href="#cse-syllabus">
+      <button class="btn">CSE</button>
+    </a>
+
+    <a href="#ece-syllabus">
+      <button class="btn">ECE</button>
+    </a>
+  </div>
+
+</section>
+
+<!-- ACCORDION -->
+<section class="container">
+<section id="cse-syllabus" class="container">
+  <h1>GATE 2026 Computer Science Syllabus</h1>
+
+  <!-- General Aptitude -->
+  <div class="card">
+    <h2>General Aptitude</h2>
+    <ul>
+      <li><b>Verbal:</b> Grammar, Tenses, Articles, Conjunctions, Reading Comprehension</li>
+      <li><b>Quantitative:</b> Data Interpretation, Ratios, Percentages, Geometry, Statistics</li>
+      <li><b>Analytical:</b> Logic, Analogy, Numerical Reasoning</li>
+      <li><b>Spatial:</b> Shape Transformations, Paper Folding, Cutting Patterns</li>
+    </ul>
+  </div>
+
+  <!-- Engineering Mathematics -->
+  <div class="card">
+    <h2>Engineering Mathematics</h2>
+    <ul>
+      <li><b>Linear Algebra:</b> Matrices, determinants, system of linear equations, eigenvalues and eigenvectors, LU decomposition.</li>
+      <li><b>Probability:</b> Random variables, Uniform, normal, exponential, Poisson and binomial distributions. Mean, median, mode and standard deviation. Conditional probability and Bayes theorem.</li>
+      <li><b>Calculus:</b>  Limits, continuity and differentiability, Maxima and minima, Mean value theorem, Integration</li>
+    </ul>
+  </div>
+
+  <!-- Discrete Math -->
+  <div class="card">
+    <h2>Discrete Mathematics</h2>
+    <ul>
+      <li>Propositional and first order logic. Sets, relations, functions, partial orders and lattice</li>
+      <li>Monoids, Groups. Graphs: connectivity, matching, colouring</li>
+      <li>Combinatorics: counting, recurrence relations, generating functions.</li>
+    </ul>
+  </div>
+
+  <!-- Digital Logic -->
+  <div class="card">
+    <h2>Digital Logic</h2>
+    <ul>
+      <li>Boolean algebra. Combinational and sequential circuits. Minimization</li>
+      <li>Number representations and computer arithmetic (fixed and floating point).</li>
+    </ul>
+  </div>
+
+  <!-- COA -->
+  <div class="card">
+    <h2>Computer Organization & Architecture</h2>
+    <ul>
+      <li>Machine instructions and addressing modes</li>
+      <li>ALU, data-path and control unit</li>
+      <li>Instruction pipelining,pipeline hazards</li>
+      <li>Memory hierarchy: cache, main memory and secondary storage</li>
+      <li>I/O interface(interrupt and DMA mode)</li>
+    </ul>
+  </div>
+
+  <!-- DS -->
+  <div class="card">
+    <h2>Data Structures & C Programming</h2>
+    <ul>
+      <li>C Basics, Recursion</li>
+      <li>Arrays, Stacks, Queues, Linked Lists</li>
+      <li>Trees, binary search trees, binary,heaps, graphs</li>
+    </ul>
+  </div>
+
+  <!-- Algo -->
+  <div class="card">
+    <h2>Algorithms</h2>
+    <ul>
+      <li>Searching, sorting, hashing. Asymptotic worst case time and space complexity</li>
+      <li>Algorithm design techniques: greedy, dynamic programming and divide-and-conquer</li>
+      <li>Graph traversals, minimum spanning trees, shortest path</li>
+    </ul>
+  </div>
+
+  <!-- TOC -->
+  <div class="card">
+    <h2>Theory of Computation</h2>
+    <ul>
+      <li>Regular expressions and finite automata</li>
+      <li>CFG, PDA</li>
+      <li>Turing Machines, Undecidability</li>
+    </ul>
+  </div>
+
+  <!-- Compiler -->
+  <div class="card">
+    <h2>Compiler Design</h2>
+    <ul>
+      <li>Lexical Analysis, Parsing</li>
+      <li>Code Generation & Optimization</li>
+      <li>Data Flow Analysis</li>
+    </ul>
+  </div>
+
+  <!-- CN -->
+  <div class="card">
+    <h2>Computer Networks</h2>
+    <ul>
+      <li>OSI & TCP/IP</li>
+      <li>Routing, IP, NAT</li>
+      <li>Protocols: DNS, HTTP, FTP</li>
+    </ul>
+  </div>
+
+  <!-- OS -->
+  <div class="card">
+    <h2>Operating System</h2>
+    <ul>
+      <li>Processes, Threads</li>
+      <li>Scheduling, Deadlock</li>
+      <li>Memory & File Systems</li>
+    </ul>
+  </div>
+
+  <!-- DBMS -->
+  <div class="card">
+    <h2>Database Management System</h2>
+    <ul>
+      <li>ER Model, SQL</li>
+      <li>Normalization</li>
+      <li>Transactions & Concurrency</li>
+    </ul>
+  </div>
+  <a href="https://boardexamstudy8.wordpress.com/wp-content/uploads/2026/03/gate-_cs_2025_syllabus.pdf" target="_blank">
+  <button class="btn">Download Syllabus PDF</button>
+</a>
+  </section>
+
+
+  <section id="ece-syllabus" class="container">
+
+  <h1>GATE 2026 Electrical Engineering (EE) Syllabus</h1>
+
+  <!-- Engineering Mathematics -->
+  <div class="card">
+    <h2>Engineering Mathematics</h2>
+    <ul>
+      <li><b>Linear Algebra:</b> Matrices, Systems of equations, Eigenvalues, Eigenvectors</li>
+      <li><b>Calculus:</b> Integration, Maxima & Minima, Fourier Series, Vector Calculus</li>
+      <li><b>Differential Equations:</b> First & higher order equations, PDEs</li>
+      <li><b>Complex Variables:</b> Analytic functions, Cauchy theorem, Residue theorem</li>
+      <li><b>Probability & Statistics:</b> Distributions, Mean, Variance, Regression</li>
+    </ul>
+  </div>
+
+  <!-- Electric Circuits -->
+  <div class="card">
+    <h2>Electric Circuits</h2>
+    <ul>
+      <li>Network elements: R, L, C, sources</li>
+      <li>KCL, KVL, Node & Mesh analysis</li>
+      <li>Thevenin, Norton, Superposition</li>
+      <li>Transient & steady-state analysis</li>
+      <li>Three-phase circuits, power factor</li>
+    </ul>
+  </div>
+
+  <!-- EMF -->
+  <div class="card">
+    <h2>Electromagnetic Fields</h2>
+    <ul>
+      <li>Coulomb’s Law, Gauss Law</li>
+      <li>Electric & Magnetic fields</li>
+      <li>Faraday’s Law, Inductance</li>
+      <li>Magnetic circuits</li>
+    </ul>
+  </div>
+
+  <!-- Signals -->
+  <div class="card">
+    <h2>Signals and Systems</h2>
+    <ul>
+      <li>Continuous & discrete signals</li>
+      <li>LTI systems</li>
+      <li>Fourier, Laplace & Z transform</li>
+      <li>Sampling theorem</li>
+    </ul>
+  </div>
+
+  <!-- Machines -->
+  <div class="card">
+    <h2>Electrical Machines</h2>
+    <ul>
+      <li>Transformers (single & three-phase)</li>
+      <li>DC Machines</li>
+      <li>Induction Motors</li>
+      <li>Synchronous Machines</li>
+    </ul>
+  </div>
+
+  <!-- Power System -->
+  <div class="card">
+    <h2>Power Systems</h2>
+    <ul>
+      <li>Generation & transmission</li>
+      <li>Load flow methods</li>
+      <li>Fault analysis</li>
+      <li>Protection systems</li>
+    </ul>
+  </div>
+
+  <!-- Control -->
+  <div class="card">
+    <h2>Control Systems</h2>
+    <ul>
+      <li>Transfer function, block diagrams</li>
+      <li>Stability analysis</li>
+      <li>Bode plots, Root locus</li>
+      <li>PID controllers</li>
+    </ul>
+  </div>
+
+  <!-- Measurements -->
+  <div class="card">
+    <h2>Electrical Measurements</h2>
+    <ul>
+      <li>Voltage, current, power measurement</li>
+      <li>Oscilloscopes</li>
+      <li>Error analysis</li>
+    </ul>
+  </div>
+
+  <!-- Electronics -->
+  <div class="card">
+    <h2>Analog & Digital Electronics</h2>
+    <ul>
+      <li>Diodes, amplifiers</li>
+      <li>Operational amplifiers</li>
+      <li>Logic circuits</li>
+      <li>ADC/DAC</li>
+    </ul>
+  </div>
+
+  <!-- Power Electronics -->
+  <div class="card">
+    <h2>Power Electronics</h2>
+    <ul>
+      <li>Thyristors, MOSFET, IGBT</li>
+      <li>Converters (AC-DC, DC-DC)</li>
+      <li>Inverters</li>
+      <li>PWM techniques</li>
+    </ul>
+  </div>
+
+  <a href="https://boardexamstudy8.wordpress.com/wp-content/uploads/2026/03/ee_2026_syllabus.pdf" target="_blank">
+    <button class="btn">Download Syllabus Pdf</button>
+</a>
+</section>
+  
+</section>
+
+
+
+<!-- ABOUT SITE -->
+<section style="text-align:center; padding:60px 20px;">
+  <h2 style="color:#00ffff;">About Future-X</h2>
+
+  <ul style="list-style:none; margin-top:30px; color:#ccc; max-width:700px; margin-left:auto; margin-right:auto; text-align:left; line-height:2;">
+    <li>✔ Free study material for BTech and GATE students</li>
+    <li>✔ Subject-wise notes like DBMS, OS, CN, and DSA</li>
+    <li>✔ Simple explanations</li>
+    <li>✔ Designed for quick revision</li>
+    <li>✔ Updated regularly</li>
+  </ul>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Future X</p>
+  <p>
+    <a href="#">About</a> |
+    <a href="#">Privacy</a> |
+    <a href="#">Terms</a>
+  </p>
+</footer>
+
+<script>
+const acc = document.querySelectorAll(".accordion");
+acc.forEach(btn => {
+  btn.addEventListener("click", () => {
+    let panel = btn.nextElementSibling;
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+  });
+});
+</script>
+
+</body>
+</html>
