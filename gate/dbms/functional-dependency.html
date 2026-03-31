@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Functional Dependency in DBMS | Closure, Keys, Armstrong Rules</title>
+
+<meta name="description" content="Complete Functional Dependency in DBMS for GATE. Learn closure, candidate keys, Armstrong axioms, derived rules with examples.">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#0a0a0a; color:#fff; line-height:1.6; }
+
+nav {
+  position:sticky; top:0; background:#111;
+  padding:0.8rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.logo { font-size:1.8rem; color:#00ffff; font-weight:700; }
+
+.nav-links {
+  list-style:none;
+  display:flex;
+  gap:1.5rem;
+}
+.nav-links a { color:#ccc; text-decoration:none; }
+
+.container {
+  max-width:1100px;
+  margin:50px auto;
+  padding:20px;
+}
+
+.card {
+  background:#111;
+  padding:25px;
+  margin-bottom:20px;
+  border-radius:10px;
+}
+
+.card h2 { color:#00ffff; margin-bottom:10px; }
+.card p, .card li { color:#ccc; }
+
+footer {
+  background:#111;
+  padding:30px;
+  text-align:center;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Future X</div>
+  <ul class="nav-links">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/gate/">GATE</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1 style="color:#00ffff;">Functional Dependency in DBMS</h1>
+  <p style="color:#ccc;">
+    Functional Dependency (FD) is the foundation of normalization and database design.
+  </p>
+</div>
+
+<div class="container">
+
+<div class="card">
+  <h2>What is Functional Dependency?</h2>
+  <p>A → B means A determines B.</p>
+</div>
+
+<div class="card">
+  <h2>Types of FD</h2>
+  <ul>
+    <li>Trivial</li>
+    <li>Non-Trivial</li>
+    <li>Completely Non-Trivial</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Armstrong’s Axioms</h2>
+  <ul>
+    <li><b>Reflexivity:</b> If B ⊆ A, then A → B</li>
+    <li><b>Augmentation:</b> If A → B then AC → BC</li>
+    <li><b>Transitivity:</b> If A → B and B → C then A → C</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Derived Rules</h2>
+  <ul>
+    <li><b>Union:</b> A → B and A → C ⇒ A → BC</li>
+    <li><b>Decomposition:</b> A → BC ⇒ A → B and A → C</li>
+    <li><b>Pseudotransitivity:</b> A → B and BC → D ⇒ AC → D</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Attribute Closure (VERY IMPORTANT)</h2>
+  <p>Closure of A is all attributes determined by A.</p>
+
+  <p><b>Example:</b></p>
+  <p>R(A,B,C), FDs: A → B, B → C</p>
+  <p>A⁺ = {A, B, C}</p>
+</div>
+
+<div class="card">
+  <h2>Steps to Find Closure</h2>
+  <ul>
+    <li>Start with given attribute</li>
+    <li>Apply FDs repeatedly</li>
+    <li>Add new attributes</li>
+    <li>Repeat until no change</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Candidate Key</h2>
+  <p>
+    A candidate key is the minimal set of attributes that determines all attributes.
+  </p>
+
+  <p><b>Example:</b></p>
+  <p>R(A,B,C), FDs: A → B, B → C</p>
+  <p>A⁺ = ABC ⇒ A is candidate key</p>
+</div>
+
+<div class="card">
+  <h2>Partial Dependency</h2>
+  <p>Occurs when attribute depends on part of composite key.</p>
+</div>
+
+<div class="card">
+  <h2>Transitive Dependency</h2>
+  <p>A → B and B → C ⇒ A → C</p>
+</div>
+
+<div class="card">
+  <h2>GATE Tips</h2>
+  <ul>
+    <li>Practice closure problems</li>
+    <li>Focus on keys</li>
+    <li>Understand normalization link</li>
+  </ul>
+</div>
+
+</div>
+
+<footer>
+  <p>© 2026 Future X</p>
+</footer>
+
+</body>
+</html>
