@@ -3,12 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Functional Dependency in DBMS | Closure, Keys, Armstrong Rules</title>
-
-<meta name="description" content="Complete Functional Dependency in DBMS for GATE. Learn closure, candidate keys, Armstrong axioms, derived rules with examples.">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>Functional Dependency | Future-X</title>
 
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
@@ -42,7 +37,31 @@ nav {
 }
 
 .card h2 { color:#00ffff; margin-bottom:10px; }
+.card h3 { color:#38bdf8; margin-top:15px; }
 .card p, .card li { color:#ccc; }
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th, td {
+  padding:10px;
+  text-align:left;
+}
+
+tr { border-bottom:1px solid #333; }
+
+.btn {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 20px;
+  background:#00ffff;
+  color:black;
+  border-radius:5px;
+  text-decoration:none;
+}
 
 footer {
   background:#111;
@@ -50,113 +69,134 @@ footer {
   text-align:center;
   color:#777;
 }
+html { scroll-behavior: smooth; }
 </style>
 </head>
 
 <body>
 
 <nav>
-  <div class="logo">Future X</div>
+  <div class="logo">Future-X</div>
   <ul class="nav-links">
     <li><a href="/index.html">Home</a></li>
-    <li><a href="/gate/">GATE</a></li>
   </ul>
 </nav>
 
 <div class="container">
-  <h1 style="color:#00ffff;">Functional Dependency in DBMS</h1>
-  <p style="color:#ccc;">
-    Functional Dependency (FD) is the foundation of normalization and database design.
-  </p>
-</div>
 
-<div class="container">
-
+<!-- INTRO -->
 <div class="card">
-  <h2>What is Functional Dependency?</h2>
-  <p>A → B means A determines B.</p>
-</div>
+  <h2>Functional Dependency (FD)</h2>
 
-<div class="card">
-  <h2>Types of FD</h2>
-  <ul>
-    <li>Trivial</li>
-    <li>Non-Trivial</li>
-    <li>Completely Non-Trivial</li>
-  </ul>
-</div>
-
-<div class="card">
-  <h2>Armstrong’s Axioms</h2>
-  <ul>
-    <li><b>Reflexivity:</b> If B ⊆ A, then A → B</li>
-    <li><b>Augmentation:</b> If A → B then AC → BC</li>
-    <li><b>Transitivity:</b> If A → B and B → C then A → C</li>
-  </ul>
-</div>
-
-<div class="card">
-  <h2>Derived Rules</h2>
-  <ul>
-    <li><b>Union:</b> A → B and A → C ⇒ A → BC</li>
-    <li><b>Decomposition:</b> A → BC ⇒ A → B and A → C</li>
-    <li><b>Pseudotransitivity:</b> A → B and BC → D ⇒ AC → D</li>
-  </ul>
-</div>
-
-<div class="card">
-  <h2>Attribute Closure (VERY IMPORTANT)</h2>
-  <p>Closure of A is all attributes determined by A.</p>
-
-  <p><b>Example:</b></p>
-  <p>R(A,B,C), FDs: A → B, B → C</p>
-  <p>A⁺ = {A, B, C}</p>
-</div>
-
-<div class="card">
-  <h2>Steps to Find Closure</h2>
-  <ul>
-    <li>Start with given attribute</li>
-    <li>Apply FDs repeatedly</li>
-    <li>Add new attributes</li>
-    <li>Repeat until no change</li>
-  </ul>
-</div>
-
-<div class="card">
-  <h2>Candidate Key</h2>
   <p>
-    A candidate key is the minimal set of attributes that determines all attributes.
+    A <b>Functional Dependency</b> is a relationship between attributes in a table.
   </p>
 
-  <p><b>Example:</b></p>
-  <p>R(A,B,C), FDs: A → B, B → C</p>
-  <p>A⁺ = ABC ⇒ A is candidate key</p>
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin:15px 0;">
+    👉 If one attribute determines another → it is called Functional Dependency
+  </div>
+
+  <p><b>Notation:</b> A → B</p>
+  <p>👉 If we know A, we can uniquely determine B</p>
 </div>
 
+<!-- EXAMPLE -->
 <div class="card">
-  <h2>Partial Dependency</h2>
-  <p>Occurs when attribute depends on part of composite key.</p>
-</div>
+  <h3>📊 Example</h3>
 
-<div class="card">
-  <h2>Transitive Dependency</h2>
-  <p>A → B and B → C ⇒ A → C</p>
-</div>
+  <table>
+    <tr style="background:#1f2937;">
+      <th>STUD_ID</th>
+      <th>NAME</th>
+      <th>DEPT</th>
+    </tr>
+    <tr>
+      <td>101</td>
+      <td>Amit</td>
+      <td>CSE</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>Ravi</td>
+      <td>ECE</td>
+    </tr>
+  </table>
 
-<div class="card">
-  <h2>GATE Tips</h2>
+  <h3>🔍 Analysis</h3>
   <ul>
-    <li>Practice closure problems</li>
-    <li>Focus on keys</li>
-    <li>Understand normalization link</li>
+    <li>STUD_ID → NAME</li>
+    <li>STUD_ID → DEPT</li>
   </ul>
+
+  <div style="background:#111827; padding:12px; border-radius:8px;">
+    👉 STUD_ID uniquely determines NAME and DEPT
+  </div>
+</div>
+
+<!-- TYPES -->
+<div class="card">
+  <h2>Types of Functional Dependency</h2>
+
+  <h3>1. Trivial FD</h3>
+  <p>If B is subset of A → Trivial</p>
+  <p><b>Example:</b> (A, B) → A</p>
+
+  <h3>2. Non-Trivial FD</h3>
+  <p>If B is not subset of A → Non-trivial</p>
+  <p><b>Example:</b> A → B</p>
+
+  <h3>3. Completely Non-Trivial FD</h3>
+  <p>If A and B have no common attributes</p>
+</div>
+
+<!-- IMPORTANT -->
+<div class="card">
+  <h2>💣 Important Concept</h2>
+
+  <p>
+    Functional Dependency shows relationship between attributes, not rows.
+  </p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff;">
+    👉 It is used in Normalization and finding Candidate Keys
+  </div>
+</div>
+
+<!-- CONFUSION -->
+<div class="card">
+  <h2>🤯 Common Confusion</h2>
+
+  <p>Does A → B mean every value must be different?</p>
+
+  <div style="background:#020617; padding:12px; border-radius:8px;">
+    ❌ NO <br><br>
+    👉 It means: same A value → same B value
+  </div>
+</div>
+
+<!-- GATE -->
+<div class="card">
+  <h2>🎯 GATE Important Points</h2>
+
+  <ul>
+    <li>A → B means A determines B</li>
+    <li>Used in normalization</li>
+    <li>Helps find candidate keys</li>
+  </ul>
+</div>
+
+<!-- NEXT -->
+<div class="card" style="text-align:center;">
+  <h3>🚀 Continue Learning</h3>
+  <a href="normalization.html" class="btn">
+    👉 Next Topic: Normalization →
+  </a>
 </div>
 
 </div>
 
 <footer>
-  <p>© 2026 Future X</p>
+© 2026 Future-X
 </footer>
 
 </body>

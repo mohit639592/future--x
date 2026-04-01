@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn DBMS Keys for GATE including Super Key, Candidate Key, Primary Key, Foreign Key and Composite Key with examples and easy explanations.">
+<meta name="keywords" content="DBMS keys, super key, candidate key, primary key, foreign key, composite key, GATE DBMS notes">
+<link rel="canonical" href="https://futurex-platform.netlify.app/gate/dbms/keys.html">
+<title>DBMS Keys Explained for GATE | Super, Candidate, Primary Key - Future X</title>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#0a0a0a; color:#fff; line-height:1.6; }
+
+nav {
+  position:sticky; top:0; background:#111;
+  padding:0.8rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.logo { font-size:1.8rem; color:#00ffff; font-weight:700; }
+
+.nav-links {
+  list-style:none;
+  display:flex;
+  gap:1.5rem;
+}
+.nav-links a { color:#ccc; text-decoration:none; }
+
+.container {
+  max-width:1100px;
+  margin:50px auto;
+  padding:20px;
+}
+
+.card {
+  background:#111;
+  padding:25px;
+  margin-bottom:20px;
+  border-radius:10px;
+}
+
+.card h2 { color:#00ffff; margin-bottom:10px; }
+.card p, .card li { color:#ccc; }
+
+.card img {
+  width:100%;
+  max-width:500px;
+  margin:15px auto;
+  display:block;
+  border-radius:10px;
+}
+
+.btn {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 20px;
+  background:#00ffff;
+  color:black;
+  border-radius:5px;
+  text-decoration:none;
+}
+
+footer {
+  background:#111;
+  padding:30px;
+  text-align:center;
+  color:#777;
+}
+html {
+  scroll-behavior: smooth;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Future-X</div>
+  <ul class="nav-links">
+    <li><a href="/index.html">Home</a></li>
+  </ul>
+</nav>
+
+
+
+<div class="container">
+  <h1 style="color:#00ffff;">DBMS Keys Explained for GATE</h1>
+  <p style="color:#ccc;">
+    Learn all types of DBMS keys including Super Key, Candidate Key, Primary Key, Foreign Key and Composite Key with examples and clear explanations.
+  </p>
+</div>
+
+
+<div class="container">
+
+<div class="card">
+<h2>What is a Key in DBMS?</h2>
+<p>
+In DBMS, a key is an attribute or set of attributes used to uniquely identify a record in a table.
+</p>
+<p>
+Keys are very important because:
+</p>
+<ul>
+<li>They prevent duplicate data</li>
+<li>They maintain data integrity</li>
+<li>They help in connecting tables</li>
+</ul>
+</div>
+
+
+<div class="card">
+
+  <button onclick="toggleMenu()" class="btn">📚 Topics ▼</button>
+
+  <div id="toc" style="display:none; margin-top:10px;">
+    <p><a href="#candidate">Candidate Key</a></p>
+    <p><a href="#super">Super Key</a></p>
+    <p><a href="#primary">Primary Key</a></p>
+    <p><a href="#foreign">Foreign Key</a></p>
+    <p><a href="#composite">Composite Key</a></p>
+  </div>
+
+</div>
+
+
+<script id="uk9m3a">
+function toggleMenu() {
+  const toc = document.getElementById("toc");
+  toc.style.display = toc.style.display === "none" ? "block" : "none";
+}
+</script>
+
+
+
+<div class="card">
+
+  <h2 id="candidate">1. Candidate Key</h2>
+
+  <p>
+    A <b>Candidate Key</b> is a minimal set of attributes that can uniquely identify a record in a table.
+  </p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin:15px 0;">
+    👉 Candidate Key = Unique + Minimal
+  </div>
+
+  <h3>🧠 Simple Understanding</h3>
+  <p>
+    A candidate key is a super key with no extra attributes.
+    If we remove any attribute from it, it will lose uniqueness.
+  </p>
+
+  <h3>⚡ Key Points</h3>
+  <ul>
+    <li>✔ Must uniquely identify each row</li>
+    <li>✔ Must be minimal (no unnecessary attributes)</li>
+    <li>✔ There can be multiple candidate keys</li>
+    <li>❌ Cannot have extra attributes</li>
+  </ul>
+
+  <h3>📊 Example Table</h3>
+
+  <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">STUD_NO</th>
+      <th style="padding:10px;">NAME</th>
+      <th style="padding:10px;">PHONE</th>
+    </tr>
+    <tr>
+      <td style="padding:10px;">101</td>
+      <td style="padding:10px;">Amit</td>
+      <td style="padding:10px;">9876</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">102</td>
+      <td style="padding:10px;">Ravi</td>
+      <td style="padding:10px;">9123</td>
+    </tr>
+  </table>
+
+  <h3>🔍 Analysis</h3>
+  <ul>
+    <li>STUD_NO → ✅ Unique → Candidate Key</li>
+    <li>PHONE → ✅ Unique → Candidate Key (if no duplicates)</li>
+    <li>(STUD_NO, NAME) → ❌ Not minimal</li>
+  </ul>
+
+  <div style="background:#111827; padding:12px; margin-top:15px; border-radius:8px;">
+    👉 So Candidate Keys are:
+    <ul>
+      <li>✔ STUD_NO</li>
+      <li>✔ PHONE (if unique)</li>
+    </ul>
+  </div>
+
+  <h3>❗ Important Concept (Minimality)</h3>
+  <p>
+    A key is called minimal if removing any attribute makes it NOT unique.
+  </p>
+
+  <p>
+    Example:
+  </p>
+
+  <ul>
+    <li>(STUD_NO, NAME) → Remove NAME → still unique</li>
+    <li>So it is NOT minimal ❌</li>
+  </ul>
+
+  <h3>🤯 Confusion Example (Combination Case)</h3>
+
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">NAME</th>
+      <th style="padding:10px;">PHONE</th>
+    </tr>
+    <tr><td style="padding:10px;">Amit</td><td style="padding:10px;">9876</td></tr>
+    <tr><td style="padding:10px;">Amit</td><td style="padding:10px;">9123</td></tr>
+    <tr><td style="padding:10px;">Ravi</td><td style="padding:10px;">9876</td></tr>
+  </table>
+
+  <h3>🔍 Analysis</h3>
+  <ul>
+    <li>NAME → ❌ Not unique</li>
+    <li>PHONE → ❌ Not unique</li>
+    <li>(NAME, PHONE) → ✅ Unique</li>
+  </ul>
+
+  <div style="background:#020617; padding:12px; margin-top:15px; border:1px solid #00ffff; border-radius:8px;">
+    👉 (NAME, PHONE) is a Candidate Key because:
+    <ul>
+      <li>✔ It is unique</li>
+      <li>✔ It is minimal (cannot remove anything)</li>
+    </ul>
+  </div>
+
+  <h3>🎯 GATE Point</h3>
+  <p>
+    ✔ Candidate Key = Minimal Super Key <br>
+    ✔ There can be multiple candidate keys in a table
+  </p>
+
+  <div style="background:#020617; padding:12px; margin-top:15px; border:1px solid #00ffff; border-radius:8px;">
+    <h3>💣 Golden Rule</h3>
+    <p>
+      If a key has extra attributes → Not a Candidate Key
+    </p>
+  </div>
+
+</div>
+
+
+
+
+<div class="card">
+
+  <h2 id="super">2. Super Key</h2>
+
+  <!-- IMAGE FIX -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Superkey_example.svg/512px-Superkey_example.svg.png"
+       alt="Super Key Diagram"
+       onerror="this.style.display='none'">
+
+  <p>
+    A <b>Super Key</b> is a set of one or more attributes that can uniquely identify a record in a table.
+  </p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin:15px 0;">
+    👉 If any combination of columns uniquely identifies a row → it is a Super Key
+  </div>
+
+  <h3>🧠 Simple Understanding</h3>
+  <p>
+    Even if extra attributes are added, the key is still valid as long as uniqueness is maintained.
+  </p>
+
+  <h3>⚡ Key Points</h3>
+  <ul>
+    <li>✔ Can be single or multiple attributes</li>
+    <li>✔ Must uniquely identify each row</li>
+    <li>✔ May contain extra attributes</li>
+    <li>❌ Not minimal</li>
+  </ul>
+
+  <h3>📊 Example Table</h3>
+
+  <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">STUD_NO</th>
+      <th style="padding:10px;">NAME</th>
+      <th style="padding:10px;">PHONE</th>
+    </tr>
+    <tr>
+      <td style="padding:10px;">101</td>
+      <td style="padding:10px;">Amit</td>
+      <td style="padding:10px;">9876</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">102</td>
+      <td style="padding:10px;">Ravi</td>
+      <td style="padding:10px;">9123</td>
+    </tr>
+  </table>
+
+  <h3>✅ Possible Super Keys</h3>
+  <ul>
+    <li>STUD_NO</li>
+    <li>(STUD_NO, NAME)</li>
+    <li>(STUD_NO, PHONE)</li>
+  </ul>
+
+  <div style="background:#111827; padding:12px; margin-top:15px; border-radius:8px;">
+    <h3>❗ Important Concept</h3>
+    <p>
+      If one attribute is already unique, adding more attributes will still keep it unique.
+    </p>
+  </div>
+
+  <div style="background:#020617; padding:12px; margin-top:15px; border:1px solid #00ffff; border-radius:8px;">
+    <h3>🎯 GATE Point</h3>
+    <p>✔ Every Candidate Key is a Super Key</p>
+    <p>❌ But every Super Key is NOT a Candidate Key</p>
+  </div>
+
+</div>
+
+
+<div class="card">
+
+  <h2>🔥 Understanding Uniqueness (Most Important Concept)</h2>
+
+  <p>
+    In DBMS, before deciding any key, we must understand <b>uniqueness</b>.
+  </p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin:15px 0;">
+    👉 Unique means: No two rows have the same value (or combination of values)
+  </div>
+
+  <!-- CASE 1 -->
+  <h3>❌ Case 1: Not Unique</h3>
+
+  <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">NAME</th>
+      <th style="padding:10px;">PHONE</th>
+    </tr>
+    <tr><td style="padding:10px;">Amit</td><td style="padding:10px;">9876</td></tr>
+    <tr><td style="padding:10px;">Ravi</td><td style="padding:10px;">9876</td></tr>
+  </table>
+
+  <p>PHONE is repeated → ❌ Not Unique → Not a key</p>
+  <h2>❓ Why Phone Number Can Repeat?</h2>
+
+  <p>
+    Many students think that phone numbers are always unique, but in databases this is NOT always true.
+  </p>
+
+  <ul>
+    <li>👨‍👩‍👧 Family members can share the same phone number</li>
+    <li>📞 One number can be used as an emergency contact for multiple people</li>
+    <li>📝 Data entry mistakes can create duplicates</li>
+    <li>🔄 Users may change numbers, but old records remain</li>
+    <li>❓ Phone number may not be mandatory (can be NULL or reused)</li>
+  </ul>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin-top:15px;">
+    👉 In DBMS, we NEVER assume a field is unique unless it is clearly given.
+  </div>
+
+
+
+
+
+  <!-- CASE 2 -->
+  <h3>❌ Case 2: Not Unique</h3>
+
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">NAME</th>
+      <th style="padding:10px;">PHONE</th>
+    </tr>
+    <tr><td style="padding:10px;">Amit</td><td style="padding:10px;">9876</td></tr>
+    <tr><td style="padding:10px;">Amit</td><td style="padding:10px;">9123</td></tr>
+  </table>
+
+  <p>NAME is repeated → ❌ Not Unique</p>
+
+  <!-- CASE 3 -->
+  <h3>✅ Case 3: Unique</h3>
+
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">NAME</th>
+      <th style="padding:10px;">PHONE</th>
+    </tr>
+    <tr><td style="padding:10px;">Amit</td><td style="padding:10px;">9876</td></tr>
+    <tr><td style="padding:10px;">Ravi</td><td style="padding:10px;">9123</td></tr>
+  </table>
+
+  <p>Both NAME and PHONE are unique → ✅ Can be keys</p>
+
+  <!-- CASE 4 -->
+  <h3>🤯 Case 4: Combination Becomes Unique</h3>
+
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">NAME</th>
+      <th style="padding:10px;">PHONE</th>
+    </tr>
+    <tr><td style="padding:10px;">Amit</td><td style="padding:10px;">9876</td></tr>
+    <tr><td style="padding:10px;">Amit</td><td style="padding:10px;">9123</td></tr>
+    <tr><td style="padding:10px;">Ravi</td><td style="padding:10px;">9876</td></tr>
+  </table>
+
+  <h3>🔍 Analysis</h3>
+  <ul>
+    <li>NAME → ❌ Not unique</li>
+    <li>PHONE → ❌ Not unique</li>
+    <li>(NAME, PHONE) → ✅ Unique</li>
+  </ul>
+
+  <div style="background:#111827; padding:12px; margin-top:15px; border-radius:8px;">
+    👉 So (NAME, PHONE) is:
+    <ul>
+      <li>✔ Super Key</li>
+      <li>✔ Candidate Key (because minimal)</li>
+    </ul>
+  </div>
+
+  <!-- STEPS -->
+  <h3>🧠 How to Check Uniqueness (Exam Method)</h3>
+
+  <ol style="margin-left:20px;">
+    <li>Pick a column</li>
+    <li>Check if values repeat</li>
+    <li>If repeat → Not unique</li>
+    <li>If not repeat → Unique</li>
+    <li>If not unique → try combinations</li>
+  </ol>
+
+  <!-- RULE -->
+  <div style="background:#020617; padding:12px; margin-top:15px; border:1px solid #00ffff; border-radius:8px;">
+    <h3>💣 Golden Rule</h3>
+    <p>If even one duplicate exists → Not unique</p>
+  </div>
+
+</div>
+
+
+
+<div class="card">
+
+  <h2 id="primary">3. Primary Key</h2>
+
+  <p>
+    A <b>Primary Key</b> is a candidate key that is selected to uniquely identify each record in a table.
+  </p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin:15px 0;">
+    👉 Primary Key = Selected Candidate Key
+  </div>
+
+  <h3>🧠 Simple Understanding</h3>
+  <p>
+    There can be multiple candidate keys in a table, but only one is chosen as the primary key.
+  </p>
+
+  <h3>⚡ Key Points</h3>
+  <ul>
+    <li>✔ Must be unique</li>
+    <li>✔ Cannot be NULL</li>
+    <li>✔ Only one primary key per table</li>
+    <li>✔ Selected from candidate keys</li>
+  </ul>
+
+  <h3>📊 Example Table</h3>
+
+  <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">STUD_NO</th>
+      <th style="padding:10px;">EMAIL</th>
+      <th style="padding:10px;">PHONE</th>
+    </tr>
+    <tr>
+      <td style="padding:10px;">101</td>
+      <td style="padding:10px;">amit@gmail.com</td>
+      <td style="padding:10px;">9876</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">102</td>
+      <td style="padding:10px;">ravi@gmail.com</td>
+      <td style="padding:10px;">9123</td>
+    </tr>
+  </table>
+
+  <h3>🔍 Analysis</h3>
+  <ul>
+    <li>STUD_NO → Candidate Key</li>
+    <li>EMAIL → Candidate Key</li>
+    <li>PHONE → Candidate Key (if unique)</li>
+  </ul>
+
+  <div style="background:#111827; padding:12px; margin-top:15px; border-radius:8px;">
+    👉 From these, one is selected as Primary Key:
+    <ul>
+      <li>✔ STUD_NO → Primary Key</li>
+    </ul>
+  </div>
+
+  <h3>❗ Important Concept</h3>
+  <p>
+    A primary key is chosen based on reliability and simplicity.
+  </p>
+
+  <ul>
+    <li>STUD_NO → stable and unique ✅</li>
+    <li>PHONE → may change ❌</li>
+  </ul>
+
+  <h3>🤯 Confusion Example</h3>
+
+  <p>
+    If multiple candidate keys exist, which one becomes primary key?
+  </p>
+
+  <div style="background:#020617; padding:12px; margin-top:15px; border:1px solid #00ffff; border-radius:8px;">
+    👉 The one that is:
+    <ul>
+      <li>✔ Stable (does not change)</li>
+      <li>✔ Simple</li>
+      <li>✔ Reliable</li>
+    </ul>
+  </div>
+
+  <h3>🎯 GATE Point</h3>
+  <p>
+    ✔ Primary Key is always a Candidate Key <br>
+    ✔ But not all Candidate Keys are Primary Keys
+  </p>
+
+  <div style="background:#020617; padding:12px; margin-top:15px; border:1px solid #00ffff; border-radius:8px;">
+    <h3>💣 Golden Rule</h3>
+    <p>
+      Primary Key cannot be NULL and must be unique.
+    </p>
+  </div>
+
+</div>
+
+
+
+
+<div class="card">
+
+  <h2 id="foreign">4. Foreign Key</h2>
+
+  <p>
+    A <b>Foreign Key</b> is an attribute in one table that is used to link it with another table.
+  </p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin:15px 0;">
+    👉 Foreign Key = Link between two tables
+  </div>
+
+  <h3>🧠 Simple Understanding</h3>
+  <p>
+    A foreign key in one table refers to the primary key of another table.
+  </p>
+
+  <h3>⚡ Key Points</h3>
+  <ul>
+    <li>✔ Used to connect two tables</li>
+    <li>✔ Refers to Primary Key of another table</li>
+    <li>✔ Can have duplicate values</li>
+    <li>✔ Can have NULL values</li>
+  </ul>
+
+  <h3>📊 Example (Two Tables)</h3>
+
+  <h3>Table 1: STUDENT</h3>
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">STUD_ID (PK)</th>
+      <th style="padding:10px;">NAME</th>
+    </tr>
+    <tr>
+      <td style="padding:10px;">101</td>
+      <td style="padding:10px;">Amit</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">102</td>
+      <td style="padding:10px;">Ravi</td>
+    </tr>
+  </table>
+
+  <h3>Table 2: COURSE</h3>
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">COURSE_ID</th>
+      <th style="padding:10px;">STUD_ID (FK)</th>
+    </tr>
+    <tr>
+      <td style="padding:10px;">C1</td>
+      <td style="padding:10px;">101</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">C2</td>
+      <td style="padding:10px;">102</td>
+    </tr>
+  </table>
+
+  <h3>🔍 Analysis</h3>
+  <ul>
+    <li>STUD_ID in STUDENT → Primary Key</li>
+    <li>STUD_ID in COURSE → Foreign Key</li>
+  </ul>
+
+  <div style="background:#111827; padding:12px; margin-top:15px; border-radius:8px;">
+    👉 Foreign Key connects COURSE table to STUDENT table
+  </div>
+
+  <h3>❗ Important Concept (Referential Integrity)</h3>
+  <p>
+    A foreign key must match a value in the parent table (or be NULL).
+  </p>
+
+  <ul>
+    <li>✔ STUD_ID = 101 → exists → valid</li>
+    <li>❌ STUD_ID = 999 → does not exist → invalid</li>
+  </ul>
+
+  <h3>🤯 Confusion Point</h3>
+  <p>
+    Can foreign key have duplicates?
+  </p>
+
+  <div style="background:#020617; padding:12px; margin-top:15px; border:1px solid #00ffff; border-radius:8px;">
+    👉 YES! Multiple rows can refer to the same parent record
+  </div>
+
+  <h3>🎯 GATE Point</h3>
+  <p>
+    ✔ Foreign Key can have duplicates <br>
+    ✔ Foreign Key can be NULL <br>
+    ✔ Maintains relationship between tables
+  </p>
+
+  <div style="background:#020617; padding:12px; margin-top:15px; border:1px solid #00ffff; border-radius:8px;">
+    <h3>💣 Golden Rule</h3>
+    <p>
+      Foreign Key must match a Primary Key value (or be NULL)
+    </p>
+  </div>
+
+</div>
+
+
+<div class="card">
+
+  <h2 id="composite">5. Composite Key</h2>
+
+  <p>
+    A <b>Composite Key</b> is a key formed by combining two or more attributes to uniquely identify a record.
+  </p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin:15px 0;">
+    👉 Composite Key = Combination of columns used as a key
+  </div>
+
+  <h3>🧠 Simple Understanding</h3>
+  <p>
+    When a single column is not enough to uniquely identify records, we combine multiple columns to form a composite key.
+  </p>
+
+  <h3>⚡ Key Points</h3>
+  <ul>
+    <li>✔ Made of two or more attributes</li>
+    <li>✔ Used when single column is not unique</li>
+    <li>✔ Ensures uniqueness using combination</li>
+  </ul>
+
+  <h3>📊 Example Table</h3>
+
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">STUD_ID</th>
+      <th style="padding:10px;">COURSE_ID</th>
+      <th style="padding:10px;">MARKS</th>
+    </tr>
+    <tr>
+      <td style="padding:10px;">101</td>
+      <td style="padding:10px;">C1</td>
+      <td style="padding:10px;">85</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">101</td>
+      <td style="padding:10px;">C2</td>
+      <td style="padding:10px;">90</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">102</td>
+      <td style="padding:10px;">C1</td>
+      <td style="padding:10px;">88</td>
+    </tr>
+  </table>
+
+  <h3>🔍 Analysis</h3>
+  <ul>
+    <li>STUD_ID → ❌ Not unique</li>
+    <li>COURSE_ID → ❌ Not unique</li>
+    <li>(STUD_ID, COURSE_ID) → ✅ Unique</li>
+  </ul>
+
+  <div style="background:#111827; padding:12px; margin-top:15px; border-radius:8px;">
+    👉 So (STUD_ID, COURSE_ID) is a Composite Key
+  </div>
+
+  <h3>❗ Important Concept</h3>
+  <p>
+    Composite Key is used when no single attribute can uniquely identify a record.
+  </p>
+
+  <h3>🎯 GATE Point</h3>
+  <p>
+    ✔ Composite Key can also be a Candidate Key <br>
+    ✔ It can be selected as Primary Key
+  </p>
+
+  <div style="background:#020617; padding:12px; margin-top:15px; border:1px solid #00ffff; border-radius:8px;">
+    <h3>💣 Golden Rule</h3>
+    <p>
+      If single attributes fail → try combination → Composite Key
+    </p>
+  </div>
+
+</div>
+
+
+
+<div class="card">
+<h2>Difference Between Keys</h2>
+<ul>
+<li><b>Primary Key:</b> Selected key</li>
+<li><b>Candidate Key:</b> All possible keys</li>
+<li><b>Super Key:</b> Candidate key + extra attributes</li>
+<li><b>Foreign Key:</b> Links tables</li>
+<li><b>Composite Key:</b> Combination of columns</li>
+</ul>
+</div>
+
+
+
+<div class="card">
+  <h2>📊 Comparison of Keys</h2>
+
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background:#1f2937;">
+      <th style="padding:10px;">Key Type</th>
+      <th style="padding:10px;">Unique</th>
+      <th style="padding:10px;">Minimal</th>
+      <th style="padding:10px;">NULL Allowed</th>
+    </tr>
+
+    <tr>
+      <td style="padding:10px;">Super Key</td>
+      <td style="padding:10px;">✔</td>
+      <td style="padding:10px;">❌</td>
+      <td style="padding:10px;">✔</td>
+    </tr>
+
+    <tr>
+      <td style="padding:10px;">Candidate Key</td>
+      <td style="padding:10px;">✔</td>
+      <td style="padding:10px;">✔</td>
+      <td style="padding:10px;">❌</td>
+    </tr>
+
+    <tr>
+      <td style="padding:10px;">Primary Key</td>
+      <td style="padding:10px;">✔</td>
+      <td style="padding:10px;">✔</td>
+      <td style="padding:10px;">❌</td>
+    </tr>
+
+    <tr>
+      <td style="padding:10px;">Foreign Key</td>
+      <td style="padding:10px;">❌</td>
+      <td style="padding:10px;">❌</td>
+      <td style="padding:10px;">✔</td>
+    </tr>
+
+    <tr>
+      <td style="padding:10px;">Composite Key</td>
+      <td style="padding:10px;">✔</td>
+      <td style="padding:10px;">✔</td>
+      <td style="padding:10px;">❌</td>
+    </tr>
+
+  </table>
+</div>
+
+
+
+
+<div class="card">
+<h2 id="difference">GATE Important Points</h2>
+<ul>
+<li>Primary key = Unique + Not NULL</li>
+<li>Candidate key = Minimal super key</li>
+<li>Foreign key ensures referential integrity</li>
+<li>Super key may contain redundant attributes</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Conclusion</h2>
+<p>
+DBMS keys are the foundation of database design. Understanding keys is very important before studying Functional Dependency and Normalization.
+</p>
+</div>
+
+</div>
+
+
+<div class="card" style="text-align:center;">
+
+  <h3>🚀 Continue Learning</h3>
+  <p>Move to the next topic: Functional Dependency</p>
+
+  <a href="functional-dependency.html" class="btn">
+    👉 Next Topic: Functional Dependency →
+  </a>
+
+</div>
+
+<footer>
+© 2026 Future-X | GATE Platform
+</footer>
+
+</body>
+</html>

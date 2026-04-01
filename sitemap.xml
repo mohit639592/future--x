@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
@@ -6,7 +6,32 @@
   </url>
 
   <url>
-    <loc>https://futurex-platform.netlify.app/index.html</loc>
+    <loc>https://futurex-platform.netlify.app/gate.html</loc>
+  </url>
+
+  <url>
+    <loc>https://futurex-platform.netlify.app/updates.html</loc>
+  </url>
+
+  <url>
+    <loc>https://futurex-platform.netlify.app/gate/gate-guide.html</loc>
+  </url>
+
+  <url>
+    <loc>https://futurex-platform.netlify.app/gate/gate-notes.html</loc>
+  </url>
+
+  <url>
+    <loc>https://futurex-platform.netlify.app/gate/dbms/dbms-notes.html</loc>
+  </url>
+</urlset> -->
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://futurex-platform.netlify.app/</loc>
   </url>
 
   <url>
@@ -30,7 +55,7 @@
   </url>
 
   <url>
-    <loc>https://futurex-platform.netlify.app/gate/dbms/functional-dependency.html</loc>
+    <loc>https://futurex-platform.netlify.app/gate/dbms/keys.html</loc>
   </url>
 
 </urlset>
