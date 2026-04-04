@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attribute Closure | Future-X</title>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#0a0a0a; color:#fff; line-height:1.6; }
+
+/* NAV */
+nav {
+  position:sticky; top:0; background:#111;
+  padding:0.8rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.logo { font-size:1.8rem; color:#00ffff; font-weight:700; }
+
+.nav-links {
+  list-style:none;
+  display:flex;
+  gap:1.5rem;
+}
+.nav-links a { color:#ccc; text-decoration:none; }
+
+/* MENU BUTTON */
+.menu-btn {
+  display:none;
+  font-size:22px;
+  color:#00ffff;
+  cursor:pointer;
+}
+.btn {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 20px;
+  background:#00ffff;
+  color:black;
+  border-radius:5px;
+  text-decoration:none;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 240px;
+  height: 100%;
+  background: #0d0d0d;
+  padding: 20px 15px;
+  border-right: 1px solid #222;
+
+  transform: translateX(0);
+  transition: transform 0.35s ease-in-out;
+  z-index: 1001;
+}
+
+.sidebar a {
+  display:block;
+  color:#aaa;
+  margin:8px 0;
+  padding:8px 10px;
+  border-radius:6px;
+  text-decoration:none;
+}
+
+.sidebar a:hover {
+  background:#111827;
+  color:#00ffff;
+}
+
+/* OVERLAY */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+#overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* CONTENT */
+.container {
+  max-width:1100px;
+  margin:50px auto;
+  padding:20px;
+  margin-left:260px;
+}
+
+.card {
+  background:#111;
+  padding:25px;
+  margin-bottom:20px;
+  border-radius:10px;
+}
+
+.card h2 { color:#00ffff; margin-bottom:10px; }
+.card h3 { color:#38bdf8; margin-top:15px; }
+.card p, .card li { color:#ccc; }
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+th, td { padding:10px; text-align:left; }
+tr { border-bottom:1px solid #333; }
+
+footer {
+  background:#111;
+  padding:30px;
+  text-align:center;
+  color:#777;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .menu-btn { display:block; }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .container {
+    margin-left:0;
+  }
+}
+
+html { scroll-behavior:smooth; }
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+  <div class="logo">Future-X</div>
+
+  <ul class="nav-links">
+    <li><a href="/index.html">Home</a></li>
+  </ul>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h3 style="color:#00ffff;">Topics</h3>
+  <a href="#intro">📘 Introduction</a>
+  <a href="#uses">🎯 Uses</a>
+  <a href="#steps">⚙️ Steps</a>
+  <a href="#example">📊 Example</a>
+  <a href="#observations">🧠 Observations</a>
+  <a href="#mistakes">❌ Mistakes</a>
+  <a href="#prime">Prime Attribute</a>
+  <a href="#non-prime">Non Prime Attribute</a>
+</div>
+
+<div id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- JS -->
+<script>
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+
+document.querySelectorAll(".sidebar a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+  });
+});
+</script>
+
+<!-- CONTENT -->
+<div class="container">
+
+<!-- INTRO -->
+<div class="card" id="intro">
+  <h2>Attribute Closure (X⁺)</h2>
+
+  <p>
+    Attribute Closure of a set X is the set of all attributes that can be determined from X using functional dependencies.
+  </p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin:15px 0;">
+    👉 X⁺ = all attributes that X can determine (direct + indirect)
+  </div>
+
+  <p><b>Formula:</b> X⁺ = { A | X → A }</p>
+</div>
+
+<!-- USES -->
+<div class="card" id="uses">
+  <h3>🎯 Why Attribute Closure is Important?</h3>
+
+  <ul>
+    <li>Find Super Keys & Candidate Keys</li>
+    <li>Check Functional Dependencies</li>
+    <li>Used in Normalization</li>
+    <li>Helps in Minimal Cover</li>
+  </ul>
+
+  <div style="background:#020617; padding:12px; border-radius:8px; margin-top:10px;">
+    👉 If X⁺ contains all attributes → X is a Super Key
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="card" id="steps">
+  <h3>⚙️ Steps to Find Attribute Closure</h3>
+
+  <ol>
+    <li>Start with X⁺ = X</li>
+    <li>Check all Functional Dependencies</li>
+    <li>If LHS ⊆ X⁺ → add RHS</li>
+    <li>Repeat until no change occurs</li>
+  </ol>
+
+  <div style="background:#111827; padding:12px; border-radius:8px; margin-top:10px;">
+    👉 Continue until closure stops growing
+  </div>
+</div>
+
+<!-- EXAMPLE -->
+<div class="card" id="example">
+  <h3>📊 Example (GATE Level)</h3>
+
+  <p>
+    R(A, B, C, D, E) <br>
+    F = { A → BC, B → D, CD → E }
+  </p>
+
+  <div style="background:#020617; padding:12px; border-radius:8px; margin:10px 0;">
+    A⁺ = {A} <br>
+    → {A, B, C} <br>
+    → {A, B, C, D} <br>
+    → {A, B, C, D, E}
+  </div>
+
+  <p><b>Final:</b> A⁺ = {A, B, C, D, E}</p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin-top:10px;">
+    👉 A is a Super Key
+  </div>
+</div>
+
+<!-- OBSERVATIONS -->
+<div class="card" id="observations">
+  <h3>🧠 Key Observations</h3>
+
+  <ul>
+    <li>Closure only increases (monotonic)</li>
+    <li>Order of FD application does not matter</li>
+    <li>Captures indirect (transitive) dependencies</li>
+  </ul>
+</div>
+
+<!-- MISTAKES -->
+<div class="card" id="mistakes">
+  <h3>❌ Common Mistakes</h3>
+
+  <ul>
+    <li>Ignoring transitive dependencies</li>
+    <li>Stopping early</li>
+    <li>Not rechecking after adding attributes</li>
+  </ul>
+</div>
+
+<!-- PRIME & NON-PRIME ATTRIBUTES (ADVANCED) -->
+<div class="card" id="prime">
+
+  <h2>Prime and Non-Prime Attributes (Deep Concept)</h2>
+
+  <p>
+    In DBMS, attributes are classified based on their participation in candidate keys.
+    This concept is extremely important for normalization (2NF, 3NF, BCNF).
+  </p>
+
+  <!-- PRIME -->
+  <h3>1. Prime Attribute</h3>
+
+  <p>
+    A <b>prime attribute</b> is any attribute that is part of <b>at least one candidate key</b>.
+  </p>
+
+  <div style="background:#020617; padding:12px; border-radius:8px;">
+    👉 If an attribute appears in ANY candidate key → it is PRIME  
+  </div>
+
+  <h3>Example 1</h3>
+  <ul>
+    <li>Relation: R(A, B, C)</li>
+    <li>Candidate Keys: (A, B) and (A, C)</li>
+  </ul>
+
+  <p>
+    👉 Prime Attributes = A, B, C  
+  </p>
+
+  <p>
+    ⚠️ Important: Even if an attribute appears in only one candidate key, it is still PRIME.
+  </p>
+
+
+  <!-- NON PRIME -->
+  <h3 id="non-prime">2. Non-Prime Attribute</h3>
+
+  <p>
+    A <b>non-prime attribute</b> is an attribute that is NOT part of any candidate key.
+  </p>
+
+  <div style="background:#020617; padding:12px; border-radius:8px;">
+    👉 If attribute is NOT in any candidate key → NON-PRIME  
+  </div>
+
+  <h3>Example 2</h3>
+  <ul>
+    <li>Relation: R(A, B, C, D)</li>
+    <li>Candidate Key: (A, B)</li>
+  </ul>
+
+  <p>
+    👉 Prime = A, B  
+    <br>
+    👉 Non-Prime = C, D  
+  </p>
+
+
+  <!-- TRICKY EXAM CASE -->
+  <h3>🔥 Tricky GATE Concept</h3>
+
+  <p>
+    If a relation has multiple candidate keys, then all attributes appearing in any candidate key are PRIME.
+  </p>
+
+  <ul>
+    <li>Relation: R(A, B, C)</li>
+    <li>Candidate Keys: (A, B) and (B, C)</li>
+  </ul>
+
+  <p>
+    👉 Prime = A, B, C  
+    👉 Non-Prime = None  
+  </p>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff;">
+    💡 GATE Trick: If all attributes are part of some candidate key → No non-prime attributes
+  </div>
+
+
+  <!-- CONNECTION WITH FD -->
+  <h3>Relation with Functional Dependency</h3>
+
+  <p>
+    Functional Dependency helps identify candidate keys, and candidate keys determine prime attributes.
+  </p>
+
+  <ul>
+    <li>Find closure → find candidate key</li>
+    <li>Candidate key → identify prime attributes</li>
+  </ul>
+
+
+  <!-- NORMALIZATION LINK -->
+  <h3>🔥 Role in Normalization</h3>
+
+  <h4>➡️ Second Normal Form (2NF)</h4>
+  <p>
+    A relation is in 2NF if:
+  </p>
+  <ul>
+    <li>It is in 1NF</li>
+    <li>No partial dependency of NON-PRIME attribute on candidate key</li>
+  </ul>
+
+  <div style="background:#020617; padding:12px; border-radius:8px;">
+    👉 Partial dependency = Non-prime depends on part of key  
+  </div>
+
+  <h4>➡️ Third Normal Form (3NF)</h4>
+  <p>
+    A relation is in 3NF if:
+  </p>
+  <ul>
+    <li>No transitive dependency</li>
+    <li>Non-prime attribute should not depend on another non-prime</li>
+  </ul>
+
+  <div style="background:#020617; padding:12px; border-radius:8px;">
+    👉 X → Y allowed if Y is PRIME  
+  </div>
+
+
+  <!-- EXAM TYPE QUESTION -->
+  <h3>📊 GATE-Level Question Example</h3>
+
+  <p>
+    Relation: R(A, B, C, D)  
+    FD: A → B, B → C  
+  </p>
+
+  <p>
+    Step 1: Find candidate key  
+    👉 A+ = A, B, C → Not complete  
+    👉 Add D → (A, D) is candidate key  
+  </p>
+
+  <p>
+    👉 Prime = A, D  
+    👉 Non-Prime = B, C  
+  </p>
+
+
+  <!-- FINAL TABLE -->
+  <h3>Difference Table</h3>
+
+  <table>
+    <tr style="background:#1f2937;">
+      <th>Prime Attribute</th>
+      <th>Non-Prime Attribute</th>
+    </tr>
+
+    <tr>
+      <td>Part of candidate key</td>
+      <td>Not part of candidate key</td>
+    </tr>
+
+    <tr>
+      <td>Used in normalization rules</td>
+      <td>Causes dependency issues</td>
+    </tr>
+
+    <tr>
+      <td>Helps identify records</td>
+      <td>Stores extra data</td>
+    </tr>
+  </table>
+
+  <div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff; margin-top:15px;">
+    🚀 Final Shortcut:  
+    Candidate Key ke andar → PRIME  
+    Candidate Key ke bahar → NON-PRIME  
+  </div>
+
+</div>
+<!-- NEXT -->
+<div class="card" style="text-align:center;">
+
+  <h3>🚀 Continue Learning</h3>
+  <p>Move to the next topic: Coming soon</p>
+
+  <a href="question1.html" class="btn">
+    👉 Next Topic: Coming Soon→
+  </a>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Future-X
+</footer>
+
+</body>
+</html>

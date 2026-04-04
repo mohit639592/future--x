@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Practice GATE DBMS questions on Functional Dependencies, Candidate Keys, and Normalization with detailed solutions. Improve your GATE CSE preparation with Future-X.">
+<title>Attribute Closure, Super Key & Candidate Key Questions (GATE PYQ) |GATE DBMS Questions with Solutions | DBMS Practice - Future X</title>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#0a0a0a; color:#fff; line-height:1.6; }
+
+/* NAV */
+nav {
+  position:sticky; top:0; background:#111;
+  padding:0.8rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.logo { font-size:1.8rem; color:#00ffff; font-weight:700; }
+
+.nav-links {
+  list-style:none;
+  display:flex;
+  gap:1.5rem;
+}
+.btn {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 20px;
+  background:#00ffff;
+  color:black;
+  border-radius:5px;
+  text-decoration:none;
+}
+.nav-links a { color:#ccc; text-decoration:none; }
+
+/* MENU BUTTON */
+.menu-btn {
+  display:none;
+  font-size:22px;
+  color:#00ffff;
+  cursor:pointer;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 240px;
+  height: 100%;
+  background: #0d0d0d;
+  padding: 20px 15px;
+  border-right: 1px solid #222;
+
+  transform: translateX(0);
+  transition: transform 0.35s ease-in-out;
+  z-index: 1001;
+}
+
+.sidebar a {
+  display:block;
+  color:#aaa;
+  margin:8px 0;
+  padding:8px 10px;
+  border-radius:6px;
+  text-decoration:none;
+}
+
+.sidebar a:hover {
+  background:#111827;
+  color:#00ffff;
+}
+
+/* OVERLAY */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+#overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* CONTENT */
+.container {
+  max-width:1100px;
+  margin:50px auto;
+  padding:20px;
+  margin-left:260px;
+}
+
+.card {
+  background:#111;
+  padding:25px;
+  margin-bottom:20px;
+  border-radius:10px;
+}
+
+.card h2 { color:#00ffff; margin-bottom:10px; }
+.card h3 { color:#38bdf8; margin-top:15px; }
+.card p, .card li { color:#ccc; }
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+th, td { padding:10px; text-align:left; }
+tr { border-bottom:1px solid #333; }
+
+footer {
+  background:#111;
+  padding:30px;
+  text-align:center;
+  color:#777;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .menu-btn { display:block; }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .container {
+    margin-left:0;
+  }
+}
+footer {
+  background:#111;
+  padding:30px;
+  text-align:center;
+  color:#777;
+}
+
+html {
+  font-size: 18px;
+}
+html { scroll-behavior:smooth; }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+  <div class="logo">Future-X</div>
+
+  <ul class="nav-links">
+    <li><a href="/index.html">Home</a></li>
+  </ul>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h3 style="color:#00ffff;">Topics</h3>
+  <a href="#intro">📘 Introduction</a>
+  <a href="#example">📊 Example</a>
+  <a href="#types">🧩 Types</a>
+  <a href="#axioms">⚙️ Axioms</a>
+  <a href="#important">💣 Important</a>
+  <a href="#confusion">🤯 Confusion</a>
+</div>
+<script>
+function toggleSidebar(){
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+/* 🔥 AUTO CLOSE ON LINK CLICK */
+const sidebarLinks = document.querySelectorAll(".sidebar a");
+
+sidebarLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+});
+</script>
+<div id="overlay" onclick="toggleSidebar()"></div>
+
+
+
+
+<div class="container">
+    <h1 style="color:#00ffff; margin-bottom:20px;">
+Attribute Closure, Super Key & Candidate Key Questions with Solutions (GATE DBMS)
+</h1>
+
+
+<h2>Important GATE Questions on Functional Dependencies</h2>
+  <p>
+Welcome to <b>Future-X GATE DBMS Practice Section</b> 🚀<br><br>
+
+Here, you will find a collection of <b>important GATE-level questions</b> on 
+<b>Functional Dependencies</b>, <b>Candidate Keys</b>, and <b>Normalization concepts</b>.<br><br>
+
+All questions are explained with <b>step-by-step solutions</b> to help you understand concepts deeply 
+and solve problems quickly in exams.<br><br>
+
+👉 These questions are highly useful for:
+</p>
+
+<ul>
+  <li>GATE CSE preparation</li>
+  <li>University exams</li>
+  <li>Interview preparation</li>
+</ul>
+
+<p>
+💡 Tip: Try solving each question yourself before viewing the solution.
+</p>
+
+<div class="card" id="q1">
+
+  <h2>GATE Question 1</h2>
+
+  <p>
+    <b>Question:</b><br><br>
+    Consider the relation scheme 
+    <b>R = {E, F, G, H, I, J, K, L, M, N}</b> 
+    and the set of functional dependencies:
+  </p>
+
+  <ul>
+    <li>{E, F} → {G}</li>
+    <li>F → {I, J}</li>
+    <li>{E, H} → {K, L}</li>
+    <li>K → M</li>
+    <li>L → N</li>
+  </ul>
+
+  <p>
+    What is the <b>candidate key</b> for R   (GATE-CS-2014)?
+  </p>
+
+  <!-- OPTIONS -->
+  <div style="margin-top:15px;">
+    <p>A. {E, F}</p>
+    <p>B. {E, F, H}</p>
+    <p>C. {E, F, H, K, L}</p>
+    <p>D. {E}</p>
+  </div>
+
+  <!-- ANSWER BUTTON -->
+  <button onclick="toggleAnswer()" class="btn">Show Answer</button>
+
+  <!-- SOLUTION -->
+  <div id="solution" class="solution" style="display:none;">
+
+    <h3>Solution</h3>
+
+    <p><b>Step 1: Start with EFH</b></p>
+
+    <ul>
+      <li>EF → G</li>
+      <li>F → I, J</li>
+      <li>EH → K, L</li>
+      <li>K → M</li>
+      <li>L → N</li>
+    </ul>
+
+    <p>
+      👉 EFH⁺ = {E, F, G, H, I, J, K, L, M, N}
+    </p>
+
+    <p>
+      👉 Covers all attributes → Super Key
+    </p>
+
+    <p>
+      Check minimality:
+    </p>
+
+    <ul>
+      <li>Remove E ❌ (cannot get K, L)</li>
+      <li>Remove F ❌ (cannot get I, J)</li>
+      <li>Remove H ❌ (cannot get K, L)</li>
+    </ul>
+
+    <p>
+      👉 Minimal → Candidate Key
+    </p>
+
+    <div style="background:#0f172a; padding:10px; border-left:4px solid #00ffff;">
+      ✅ Correct Answer: <b>B. {E, F, H}</b>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+function toggleAnswer(){
+  let sol = document.getElementById("solution");
+  sol.style.display = sol.style.display === "none" ? "block" : "none";
+}
+
+</script>
+
+
+
+
+<div class="card" id="q3">
+
+  <h2>GATE Question 2</h2>
+
+  <p>
+    <b>Question:</b><br><br>
+    In a schema with attributes <b>A, B, C, D, E</b>, the following functional dependencies are given:
+  </p>
+
+  <ul>
+    <li>A → B</li>
+    <li>A → C</li>
+    <li>CD → E</li>
+    <li>B → D</li>
+    <li>E → A</li>
+  </ul>
+
+  <p>
+    Which of the following functional dependencies is <b>NOT implied</b> by the above set (GATE IT 2005) ?
+  </p>
+
+  <!-- OPTIONS -->
+  <div style="margin-top:15px;">
+    <p>A. CD → AC</p>
+    <p>B. BD → CD</p>
+    <p>C. BC → CD</p>
+    <p>D. AC → BC</p>
+  </div>
+
+  <!-- BUTTON -->
+  <button onclick="toggleAnswerQ3()" class="btn">Show Answer</button>
+
+  <!-- SOLUTION -->
+  <div id="solution-q3" class="solution" style="display:none;">
+
+    <h3>Solution (Step-by-Step)</h3>
+
+    <p><b>We check each option using closure</b></p>
+
+    <hr style="margin:10px 0; border:1px solid #222;">
+
+    <p><b>Option A: CD → AC</b></p>
+    <ul>
+      <li>CD → E</li>
+      <li>E → A</li>
+      <li>A → C</li>
+    </ul>
+    <p>👉 CD⁺ = {C, D, E, A}</p>
+    <p>✔ A and C present → IMPLIED</p>
+
+    <hr style="margin:10px 0; border:1px solid #222;">
+
+    <p><b>Option B: BD → CD</b></p>
+    <ul>
+      <li>B → D (already have D)</li>
+    </ul>
+    <p>👉 BD⁺ = {B, D}</p>
+    <p>❌ Cannot get C → NOT IMPLIED</p>
+
+    <hr style="margin:10px 0; border:1px solid #222;">
+
+    <p><b>Option C: BC → CD</b></p>
+    <ul>
+      <li>B → D</li>
+    </ul>
+    <p>👉 BC⁺ = {B, C, D}</p>
+    <p>✔ Contains C and D → IMPLIED</p>
+
+    <hr style="margin:10px 0; border:1px solid #222;">
+
+    <p><b>Option D: AC → BC</b></p>
+    <ul>
+      <li>A → B</li>
+    </ul>
+    <p>👉 AC⁺ = {A, B, C}</p>
+    <p>✔ Contains B and C → IMPLIED</p>
+
+    <div style="background:#0f172a; padding:10px; border-left:4px solid #00ffff; margin-top:10px;">
+      ❌ NOT IMPLIED: <b>B. BD → CD</b>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function toggleAnswerQ3(){
+  let sol = document.getElementById("solution-q3");
+  sol.style.display = sol.style.display === "none" ? "block" : "none";
+}
+</script>
+
+
+
+<div class="card" id="q2">
+
+  <h2>GATE Question 3</h2>
+
+  <p>
+    <b>Question:</b><br><br>
+    Consider the relation scheme 
+    <b>R(A, B, C, D)</b> 
+    and the set of functional dependencies:
+  </p>
+
+  <ul>
+    <li>AB → C</li>
+    <li>C → D</li>
+    <li>D → B</li>
+  </ul>
+
+  <p>
+    Find the <b>candidate keys</b> for R.
+  </p>
+
+  <!-- OPTIONS -->
+  <div style="margin-top:15px;">
+    <p>A. {AB}</p>
+    <p>B. {AB, AC}</p>
+    <p>C. {AB, AC, AD}</p>
+    <p>D. {A}</p>
+  </div>
+
+  <!-- ANSWER BUTTON -->
+  <button onclick="toggleAnswer2()" class="btn">Show Answer</button>
+
+  <!-- SOLUTION -->
+  <div id="solution2" class="solution" style="display:none;">
+
+    <h3>Solution</h3>
+
+    <p><b>Step 1: Check AB</b></p>
+
+    <ul>
+      <li>AB → C</li>
+      <li>C → D</li>
+      <li>D → B</li>
+    </ul>
+
+    <p>
+      👉 AB⁺ = {A, B, C, D}
+    </p>
+
+    <p>
+      👉 Covers all attributes → Super Key
+    </p>
+
+    <p>
+      👉 Minimal → Candidate Key
+    </p>
+
+    <hr>
+
+    <p><b>Step 2: Check AC</b></p>
+
+    <ul>
+      <li>C → D</li>
+      <li>D → B</li>
+    </ul>
+
+    <p>
+      👉 AC⁺ = {A, C, D, B}
+    </p>
+
+    <p>
+      👉 Covers all → Candidate Key
+    </p>
+
+    <hr>
+
+    <p><b>Step 3: Check AD</b></p>
+
+    <ul>
+      <li>D → B</li>
+      <li>AB → C</li>
+    </ul>
+
+    <p>
+      👉 AD⁺ = {A, D, B, C}
+    </p>
+
+    <p>
+      👉 Covers all → Candidate Key
+    </p>
+
+    <hr>
+
+    <p>
+      👉 Final Candidate Keys = {AB, AC, AD}
+    </p>
+
+    <div style="background:#0f172a; padding:10px; border-left:4px solid #00ffff;">
+      ✅ Correct Answer: <b>C. {AB, AC, AD}</b>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+function toggleAnswer2(){
+  let sol = document.getElementById("solution2");
+  sol.style.display = sol.style.display === "none" ? "block" : "none";
+}
+</script>
+
+
+<div class="card" id="q3">
+
+  <h2>GATE Question 4</h2>
+
+  <p>
+    <b>Question:</b><br><br>
+    Consider the relation scheme 
+    <b>R(A, B, C, D, E)</b> 
+    and the set of functional dependencies:
+  </p>
+
+  <ul>
+    <li>AB → C</li>
+    <li>BC → D</li>
+  </ul>
+
+  <p>
+    Find the <b>candidate keys</b> for R.
+  </p>
+
+  <!-- OPTIONS -->
+  <div style="margin-top:15px;">
+    <p>A. {A, B, E}</p>
+    <p>B. {A, B}</p>
+    <p>C. {B, C, E}</p>
+    <p>D. {A, B, C, E}</p>
+  </div>
+
+  <!-- ANSWER BUTTON -->
+  <button onclick="toggleAnswer3()" class="btn">Show Answer</button>
+
+  <!-- SOLUTION -->
+  <div id="solution3" class="solution" style="display:none;">
+
+    <h3>Solution</h3>
+
+    <p><b>Step 1: Identify attributes not on RHS</b></p>
+
+    <ul>
+      <li>FDs: AB → C, BC → D</li>
+      <li>RHS = {C, D}</li>
+      <li>Attributes NOT in RHS = {A, B, E}</li>
+    </ul>
+
+    <p>
+      👉 These must be part of every candidate key
+    </p>
+
+    <hr>
+
+    <p><b>Step 2: Check closure of ABE</b></p>
+
+    <ul>
+      <li>AB → C</li>
+      <li>Now we have B, C → BC → D</li>
+    </ul>
+
+    <p>
+      👉 ABE⁺ = {A, B, E, C, D}
+    </p>
+
+    <p>
+      👉 Covers all attributes → Super Key
+    </p>
+
+    <hr>
+
+    <p><b>Step 3: Check minimality</b></p>
+
+    <ul>
+      <li>Remove A ❌ (cannot get C)</li>
+      <li>Remove B ❌ (cannot apply AB → C)</li>
+      <li>Remove E ❌ (E cannot be derived from anywhere)</li>
+    </ul>
+
+    <p>
+      👉 Minimal → Candidate Key
+    </p>
+
+    <hr>
+
+    <div style="background:#0f172a; padding:10px; border-left:4px solid #00ffff;">
+      ✅ Correct Answer: <b>A. {A, B, E}</b>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="card" id="q4">
+
+  <h2>GATE Question 5</h2>
+
+  <p>
+    <b>Question:</b><br><br>
+    Consider the relation scheme 
+    <b>R(A, B, C, D, E, F)</b> 
+    and the set of functional dependencies:
+  </p>
+
+  <ul>
+    <li>AB → C</li>
+    <li>C → D</li>
+    <li>CD → BE</li>
+    <li>DE → F</li>
+    <li>EF → A</li>
+  </ul>
+
+  <p>
+    Find all <b>candidate keys</b> for R.
+  </p>
+
+  <!-- OPTIONS -->
+  <div style="margin-top:15px;">
+    <p>A. {AB, BC, CE, EF}</p>
+    <p>B. {AB, BC, CE}</p>
+    <p>C. {AB}</p>
+    <p>D. {AB, CE}</p>
+  </div>
+
+  <!-- ANSWER BUTTON -->
+  <button onclick="toggleAnswer4()" class="btn">Show Answer</button>
+
+  <!-- SOLUTION -->
+  <div id="solution4" class="solution" style="display:none;">
+
+    <h3>Solution</h3>
+
+    <p><b>Step 1: Check AB</b></p>
+
+    <ul>
+      <li>AB → C</li>
+      <li>C → D</li>
+      <li>CD → BE</li>
+      <li>DE → F</li>
+      <li>EF → A</li>
+    </ul>
+
+    <p>
+      👉 AB⁺ = {A, B, C, D, E, F}
+    </p>
+
+    <p>
+      👉 Covers all → Candidate Key
+    </p>
+
+    <hr>
+
+    <p><b>Step 2: Check BC</b></p>
+
+    <ul>
+      <li>C → D</li>
+      <li>CD → BE</li>
+      <li>DE → F</li>
+      <li>EF → A</li>
+    </ul>
+
+    <p>
+      👉 BC⁺ = {B, C, D, E, F, A}
+    </p>
+
+    <p>
+      👉 Covers all → Candidate Key
+    </p>
+
+    <hr>
+
+    <p><b>Step 3: Check CE</b></p>
+
+    <ul>
+      <li>C → D</li>
+      <li>CD → BE</li>
+      <li>DE → F</li>
+      <li>EF → A</li>
+    </ul>
+
+    <p>
+      👉 CE⁺ = {C, E, D, B, F, A}
+    </p>
+
+    <p>
+      👉 Covers all → Candidate Key
+    </p>
+
+    <hr>
+
+    <p><b>Step 4: Check EF</b></p>
+
+    <ul>
+      <li>EF → A</li>
+      <li>AB → C</li>
+      <li>C → D</li>
+      <li>CD → BE</li>
+    </ul>
+
+    <p>
+      👉 EF⁺ = {E, F, A, B, C, D}
+    </p>
+
+    <p>
+      👉 Covers all → Candidate Key
+    </p>
+
+    <hr>
+
+    <p>
+      👉 Final Candidate Keys = {AB, BC, CE, EF}
+    </p>
+
+    <div style="background:#0f172a; padding:10px; border-left:4px solid #00ffff;">
+      ✅ Correct Answer: <b>A. {AB, BC, CE, EF}</b>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+function toggleAnswer4(){
+  let sol = document.getElementById("solution4");
+  sol.style.display = sol.style.display === "none" ? "block" : "none";
+}
+</script>
+
+
+
+<script>
+function toggleAnswer3(){
+  let sol = document.getElementById("solution3");
+  sol.style.display = sol.style.display === "none" ? "block" : "none";
+}
+</script>
+
+
+<div class="card" id="q5">
+
+  <h2>GATE Question 6</h2>
+
+  <p>
+    <b>Question:</b><br><br>
+    Consider the relation scheme 
+    <b>R(A, B, C, D, E, F)</b> 
+    and the set of functional dependencies:
+  </p>
+
+  <ul>
+    <li>AB → C</li>
+    <li>C → DE</li>
+    <li>E → F</li>
+    <li>F → B</li>
+  </ul>
+
+  <p>
+    Find all <b>candidate keys</b> for R.
+  </p>
+
+  <!-- ANSWER BUTTON -->
+  <button onclick="toggleAnswer5()" class="btn">Show Answer</button>
+
+  <!-- SOLUTION -->
+  <div id="solution5" class="solution" style="display:none;">
+
+    <h3>Solution</h3>
+
+    <p><b>Step 1: Find attributes not on RHS</b></p>
+
+    <ul>
+      <li>RHS = {C, D, E, F, B}</li>
+      <li>Attributes NOT in RHS = {A}</li>
+    </ul>
+
+    <p>
+      👉 A must be present in every candidate key
+    </p>
+
+    <hr>
+
+    <p><b>Step 2: Try with A + B</b></p>
+
+    <p>
+      AB → C → DE → F → B
+    </p>
+
+    <p>
+      👉 AB⁺ = {A, B, C, D, E, F}
+    </p>
+
+    <p>
+      👉 Candidate Key
+    </p>
+
+    <hr>
+
+    <p><b>Step 3: Try with A + F</b></p>
+
+    <p>
+      F → B → AB → C → DE
+    </p>
+
+    <p>
+      👉 AF⁺ = {A, F, B, C, D, E}
+    </p>
+
+    <p>
+      👉 Candidate Key
+    </p>
+
+    <hr>
+
+    <p><b>Step 4: Try with A + E</b></p>
+
+    <p>
+      E → F → B → AB → C → DE
+    </p>
+
+    <p>
+      👉 AE⁺ = {A, E, F, B, C, D}
+    </p>
+
+    <p>
+      👉 Candidate Key
+    </p>
+
+    <hr>
+
+    <p><b>Step 5: Check A + C</b></p>
+
+    <p>
+      C → DE → F → B
+    </p>
+
+    <p>
+      👉 AC⁺ = {A, C, D, E, F, B}
+    </p>
+
+    <p>
+      👉 Candidate Key
+    </p>
+
+    <hr>
+
+    <div style="background:#0f172a; padding:10px; border-left:4px solid #00ffff;">
+      ✅ Final Candidate Keys: <b>{AB, AC, AE, AF}</b>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+function toggleAnswer5(){
+  let sol = document.getElementById("solution5");
+  sol.style.display = sol.style.display === "none" ? "block" : "none";
+}
+</script>
+
+
+<div class="card" id="q6">
+
+  <h2>GATE Question 7</h2>
+
+  <p>
+    <b>Question:</b><br><br>
+    Consider the relation scheme 
+    <b>R(A, B, C, D, E)</b> 
+    and the set of functional dependencies:
+  </p>
+
+  <ul>
+    <li>A → B</li>
+    <li>B → C</li>
+    <li>C → D</li>
+    <li>D → A</li>
+  </ul>
+
+  <p>
+    Find all <b>candidate keys</b> for R.
+  </p>
+
+  <!-- ANSWER BUTTON -->
+  <button onclick="toggleAnswer6()" class="btn">Show Answer</button>
+
+  <!-- SOLUTION -->
+  <div id="solution6" class="solution" style="display:none;">
+
+    <h3>Solution</h3>
+
+    <p><b>Step 1: Identify structure</b></p>
+
+    <p>
+      A → B → C → D → A (cycle)
+    </p>
+
+    <p>
+      👉 A, B, C, D are all equivalent (each determines others)
+    </p>
+
+    <hr>
+
+    <p><b>Step 2: Check attribute E</b></p>
+
+    <p>
+      👉 E is not present in any FD  
+      👉 So E cannot be derived  
+      👉 E must be in every candidate key
+    </p>
+
+    <hr>
+
+    <p><b>Step 3: Form candidate keys</b></p>
+
+    <ul>
+      <li>AE⁺ = {A, B, C, D, E}</li>
+      <li>BE⁺ = {B, C, D, A, E}</li>
+      <li>CE⁺ = {C, D, A, B, E}</li>
+      <li>DE⁺ = {D, A, B, C, E}</li>
+    </ul>
+
+    <p>
+      👉 All cover full relation → Candidate Keys
+    </p>
+
+    <hr>
+
+    <div style="background:#0f172a; padding:10px; border-left:4px solid #00ffff;">
+      ✅ Final Candidate Keys: <b>{AE, BE, CE, DE}</b>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+function toggleAnswer6(){
+  let sol = document.getElementById("solution6");
+  sol.style.display = sol.style.display === "none" ? "block" : "none";
+}
+</script>
+
+
+<div class="card" id="q7">
+
+  <h2>GATE Question 8</h2>
+
+  <p>
+    <b>Question:</b><br><br>
+    Given the set of functional dependencies:
+  </p>
+
+  <ul>
+    <li>XY → W</li>
+    <li>Y → Z</li>
+    <li>WZ → P</li>
+    <li>WP → QR</li>
+    <li>Q → X</li>
+  </ul>
+
+  <p>
+    Show that: <b>XY → P</b>
+  </p>
+
+  <!-- ANSWER BUTTON -->
+  <button onclick="toggleAnswer7()" class="btn">Show Answer</button>
+
+  <!-- SOLUTION -->
+  <div id="solution7" class="solution" style="display:none;">
+
+    <h3>Solution</h3>
+
+    <p><b>Step 1: Start with XY(Find closure of XY if it contains p then Yes otherwise NO)</b></p>
+
+    <ul>
+      <li>XY → W  ⇒ add W</li>
+    </ul>
+
+    <p>
+      👉 Now we have: {X, Y, W}
+    </p>
+
+    <hr>
+
+    <p><b>Step 2: Use Y → Z</b></p>
+
+    <ul>
+      <li>Y → Z ⇒ add Z</li>
+    </ul>
+
+    <p>
+      👉 Now we have: {X, Y, W, Z}
+    </p>
+
+    <hr>
+
+    <p><b>Step 3: Use WZ → P</b></p>
+
+    <ul>
+      <li>WZ → P ⇒ add P</li>
+    </ul>
+
+    <p>
+      👉 Now we have: {X, Y, W, Z, P}
+    </p>
+
+    <hr>
+
+    <p>
+      👉 P is derived from XY
+    </p>
+
+    <div style="background:#0f172a; padding:10px; border-left:4px solid #00ffff;">
+      ✅ Hence Proven: <b>XY → P</b>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+function toggleAnswer7(){
+  let sol = document.getElementById("solution7");
+  sol.style.display = sol.style.display === "none" ? "block" : "none";
+}
+</script>
+
+
+<!-- NEXT -->
+<div class="card" style="text-align:center;">
+  <h3>🚀 Continue Learning</h3>
+  <a href="clouser.html" class="btn">
+    👉 Next Topic: Clouser →
+  </a>
+</div>
+
+</div>
+
+
+
+
+<footer>
+© 2026 Future-X
+</footer>
+
+</body>
+</html>

@@ -9,6 +9,7 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
 body { background:#0a0a0a; color:#fff; line-height:1.6; }
 
+/* NAV */
 nav {
   position:sticky; top:0; background:#111;
   padding:0.8rem 2rem;
@@ -21,12 +22,80 @@ nav {
   display:flex;
   gap:1.5rem;
 }
+.btn {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 20px;
+  background:#00ffff;
+  color:black;
+  border-radius:5px;
+  text-decoration:none;
+}
 .nav-links a { color:#ccc; text-decoration:none; }
 
+/* MENU BUTTON */
+.menu-btn {
+  display:none;
+  font-size:22px;
+  color:#00ffff;
+  cursor:pointer;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 240px;
+  height: 100%;
+  background: #0d0d0d;
+  padding: 20px 15px;
+  border-right: 1px solid #222;
+
+  transform: translateX(0);
+  transition: transform 0.35s ease-in-out;
+  z-index: 1001;
+}
+
+.sidebar a {
+  display:block;
+  color:#aaa;
+  margin:8px 0;
+  padding:8px 10px;
+  border-radius:6px;
+  text-decoration:none;
+}
+
+.sidebar a:hover {
+  background:#111827;
+  color:#00ffff;
+}
+
+/* OVERLAY */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+#overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* CONTENT */
 .container {
   max-width:1100px;
   margin:50px auto;
   padding:20px;
+  margin-left:260px;
 }
 
 .card {
@@ -45,23 +114,8 @@ table {
   border-collapse:collapse;
   margin-top:10px;
 }
-
-th, td {
-  padding:10px;
-  text-align:left;
-}
-
+th, td { padding:10px; text-align:left; }
 tr { border-bottom:1px solid #333; }
-
-.btn {
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 20px;
-  background:#00ffff;
-  color:black;
-  border-radius:5px;
-  text-decoration:none;
-}
 
 footer {
   background:#111;
@@ -69,23 +123,82 @@ footer {
   text-align:center;
   color:#777;
 }
-html { scroll-behavior: smooth; }
+
+/* MOBILE */
+@media(max-width:768px){
+  .menu-btn { display:block; }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .container {
+    margin-left:0;
+  }
+}
+footer {
+  background:#111;
+  padding:30px;
+  text-align:center;
+  color:#777;
+}
+html { scroll-behavior:smooth; }
 </style>
 </head>
 
 <body>
 
 <nav>
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
   <div class="logo">Future-X</div>
+
   <ul class="nav-links">
     <li><a href="/index.html">Home</a></li>
   </ul>
 </nav>
 
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h3 style="color:#00ffff;">Topics</h3>
+  <a href="#intro">📘 Introduction</a>
+  <a href="#example">📊 Example</a>
+  <a href="#types">🧩 Types</a>
+  <a href="#axioms">⚙️ Axioms</a>
+  <a href="#important">💣 Important</a>
+  <a href="#confusion">🤯 Confusion</a>
+</div>
+<script>
+function toggleSidebar(){
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+
+/* 🔥 AUTO CLOSE ON LINK CLICK */
+const sidebarLinks = document.querySelectorAll(".sidebar a");
+
+sidebarLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+});
+</script>
+<div id="overlay" onclick="toggleSidebar()"></div>
+
 <div class="container">
 
 <!-- INTRO -->
-<div class="card">
+<div class="card" id="intro">
   <h2>Functional Dependency (FD)</h2>
 
   <p>
@@ -101,7 +214,7 @@ html { scroll-behavior: smooth; }
 </div>
 
 <!-- EXAMPLE -->
-<div class="card">
+<div class="card" id="example">
   <h3>📊 Example</h3>
 
   <table>
@@ -134,23 +247,140 @@ html { scroll-behavior: smooth; }
 </div>
 
 <!-- TYPES -->
-<div class="card">
+<div class="card" id="types">
   <h2>Types of Functional Dependency</h2>
 
-  <h3>1. Trivial FD</h3>
-  <p>If B is subset of A → Trivial</p>
-  <p><b>Example:</b> (A, B) → A</p>
+  <!-- TRIVIAL -->
+  <h3>1. Trivial Functional Dependency</h3>
 
-  <h3>2. Non-Trivial FD</h3>
-  <p>If B is not subset of A → Non-trivial</p>
-  <p><b>Example:</b> A → B</p>
+  <p>
+    A functional dependency A → B is called <b>trivial</b> if B is a subset of A.
+  </p>
 
-  <h3>3. Completely Non-Trivial FD</h3>
-  <p>If A and B have no common attributes</p>
+  <p>
+    👉 In simple words, if the right-hand side attribute is already present in the left-hand side, then it is trivial.
+  </p>
+
+  <p><b>Condition:</b> B ⊆ A</p>
+
+  <p><b>Example:</b></p>
+  <ul>
+    <li>(A, B) → A</li>
+    <li>(Roll No, Name) → Name</li>
+  </ul>
+
+  <div style="background:#020617; padding:12px; border-radius:8px;">
+    👉 No new information is added  
+    👉 Always true  
+  </div>
+
+
+  <!-- NON TRIVIAL -->
+  <h3>2. Non-Trivial Functional Dependency</h3>
+
+  <p>
+    A functional dependency A → B is called <b>non-trivial</b> if B is NOT a subset of A.
+  </p>
+
+  <p>
+    👉 This means the dependency gives new and useful information.
+  </p>
+
+  <p><b>Condition:</b> B ⊄ A</p>
+
+  <p><b>Example:</b></p>
+  <ul>
+    <li>Roll No → Name</li>
+    <li>Roll No → Department</li>
+  </ul>
+
+  <div style="background:#020617; padding:12px; border-radius:8px;">
+    👉 Provides useful information  
+    👉 Helps in finding keys  
+  </div>
+
+
+  <!-- COMPLETELY NON TRIVIAL -->
+  <h3>3. Completely Non-Trivial Dependency</h3>
+
+  <p>
+    If A and B have no common attributes, then it is called completely non-trivial dependency.
+  </p>
+
+  <p><b>Example:</b> Roll No → Name</p>
+
+
+  <!-- COMPARISON TABLE -->
+  <h3>Difference Between Trivial and Non-Trivial</h3>
+
+  <table>
+    <tr style="background:#1f2937;">
+      <th>Trivial</th>
+      <th>Non-Trivial</th>
+    </tr>
+
+    <tr>
+      <td>B ⊆ A</td>
+      <td>B ⊄ A</td>
+    </tr>
+
+    <tr>
+      <td>No new information</td>
+      <td>Provides new information</td>
+    </tr>
+
+    <tr>
+      <td>Always true</td>
+      <td>Depends on data</td>
+    </tr>
+  </table>
+
+</div>
+
+
+
+
+<div class="card" id="axioms">
+  <h2>Armstrong’s Inference Rules</h2>
+
+  <!-- BASIC AXIOMS -->
+  <h3>1. Reflexivity (Basic Rule)</h3>
+  <p>If Y ⊆ X, then X → Y</p>
+  <p><b>Example:</b> (Roll No, Name) → Name</p>
+
+  <h3>2. Augmentation (Basic Rule)</h3>
+  <p>If X → Y, then XW → YW</p>
+  <p><b>Example:</b> If Roll No → Name, then (Roll No, Dept) → (Name, Dept)</p>
+
+  <h3>3. Transitivity (Basic Rule)</h3>
+  <p>If X → Y and Y → Z, then X → Z</p>
+  <p><b>Example:</b> Roll No → Dept and Dept → HOD, so Roll No → HOD</p>
+
+
+  <!-- DERIVED RULES -->
+  <h2>Derived Rules</h2>
+
+  <h3>4. Pseudotransitivity</h3>
+  <p>If X → Y and WY → Z, then WX → Z</p>
+  <p><b>Example:</b> If A → B and CB → D, then CA → D</p>
+
+  <h3>5. Union (Additivity)</h3>
+  <p>If X → Y and X → Z, then X → YZ</p>
+  <p><b>Example:</b> If Roll No → Name and Roll No → Dept, then Roll No → (Name, Dept)</p>
+
+  <h3>6. Decomposition (Projectivity)</h3>
+  <p>If X → YZ, then X → Y and X → Z</p>
+  <p><b>Example:</b> If Roll No → (Name, Dept), then Roll No → Name and Roll No → Dept</p>
+
+  <!-- EXTRA EXAM LINE -->
+  <div style="background:#020617; padding:12px; border-radius:8px; margin-top:15px;">
+    👉 These rules are used to find attribute closure, candidate keys, and normalization.
+  </div>
+
 </div>
 
 <!-- IMPORTANT -->
-<div class="card">
+<div class="card" id="important">
   <h2>💣 Important Concept</h2>
 
   <p>
@@ -163,7 +393,7 @@ html { scroll-behavior: smooth; }
 </div>
 
 <!-- CONFUSION -->
-<div class="card">
+<div class="card" id="confusion">
   <h2>🤯 Common Confusion</h2>
 
   <p>Does A → B mean every value must be different?</p>
@@ -174,6 +404,16 @@ html { scroll-behavior: smooth; }
   </div>
 </div>
 
+<div class="card">
+  <h2>Why Functional Dependency is Important?</h2>
+
+  <ul>
+    <li>Helps in database normalization</li>
+    <li>Reduces data redundancy</li>
+    <li>Used to find candidate keys</li>
+    <li>Improves database design</li>
+  </ul>
+</div>
 <!-- GATE -->
 <div class="card">
   <h2>🎯 GATE Important Points</h2>
@@ -185,15 +425,19 @@ html { scroll-behavior: smooth; }
   </ul>
 </div>
 
+
 <!-- NEXT -->
 <div class="card" style="text-align:center;">
   <h3>🚀 Continue Learning</h3>
-  <a href="normalization.html" class="btn">
-    👉 Next Topic: Normalization →
+  <a href="clouser.html" class="btn">
+    👉 Next Topic: Clouser →
   </a>
 </div>
 
 </div>
+
+
+
 
 <footer>
 © 2026 Future-X
