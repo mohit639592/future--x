@@ -4,145 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Attribute Closure | Future-X</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="style.css">
 
-<style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-body { background:#0a0a0a; color:#fff; line-height:1.6; }
 
-/* NAV */
-nav {
-  position:sticky; top:0; background:#111;
-  padding:0.8rem 2rem;
-  display:flex; justify-content:space-between; align-items:center;
-}
-.logo { font-size:1.8rem; color:#00ffff; font-weight:700; }
-
-.nav-links {
-  list-style:none;
-  display:flex;
-  gap:1.5rem;
-}
-.nav-links a { color:#ccc; text-decoration:none; }
-
-/* MENU BUTTON */
-.menu-btn {
-  display:none;
-  font-size:22px;
-  color:#00ffff;
-  cursor:pointer;
-}
-.btn {
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 20px;
-  background:#00ffff;
-  color:black;
-  border-radius:5px;
-  text-decoration:none;
-}
-
-/* SIDEBAR */
-.sidebar {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  width: 240px;
-  height: 100%;
-  background: #0d0d0d;
-  padding: 20px 15px;
-  border-right: 1px solid #222;
-
-  transform: translateX(0);
-  transition: transform 0.35s ease-in-out;
-  z-index: 1001;
-}
-
-.sidebar a {
-  display:block;
-  color:#aaa;
-  margin:8px 0;
-  padding:8px 10px;
-  border-radius:6px;
-  text-decoration:none;
-}
-
-.sidebar a:hover {
-  background:#111827;
-  color:#00ffff;
-}
-
-/* OVERLAY */
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.3);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-  z-index: 1000;
-}
-
-#overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* CONTENT */
-.container {
-  max-width:1100px;
-  margin:50px auto;
-  padding:20px;
-  margin-left:260px;
-}
-
-.card {
-  background:#111;
-  padding:25px;
-  margin-bottom:20px;
-  border-radius:10px;
-}
-
-.card h2 { color:#00ffff; margin-bottom:10px; }
-.card h3 { color:#38bdf8; margin-top:15px; }
-.card p, .card li { color:#ccc; }
-
-table {
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
-th, td { padding:10px; text-align:left; }
-tr { border-bottom:1px solid #333; }
-
-footer {
-  background:#111;
-  padding:30px;
-  text-align:center;
-  color:#777;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .menu-btn { display:block; }
-
-  .sidebar {
-    transform: translateX(-100%);
-  }
-
-  .sidebar.active {
-    transform: translateX(0);
-  }
-
-  .container {
-    margin-left:0;
-  }
-}
-
-html { scroll-behavior:smooth; }
-</style>
 </head>
 
 <body>
@@ -150,7 +17,9 @@ html { scroll-behavior:smooth; }
 <!-- NAV -->
 <nav>
   <div class="menu-btn" onclick="toggleSidebar()">☰</div>
-  <div class="logo">Future-X</div>
+    <div class="logo">
+    <img src="../../logo.png" alt="Future X Logo">
+  </div>
 
   <ul class="nav-links">
     <li><a href="/index.html">Home</a></li>
@@ -218,6 +87,9 @@ document.querySelectorAll(".sidebar a").forEach(link=>{
 
   <div style="background:#020617; padding:12px; border-radius:8px; margin-top:10px;">
     👉 If X⁺ contains all attributes → X is a Super Key
+      <p><b>Learn more about </b>
+    <a style="color:yellow"href="keys.html#super"> Super Key</a>
+</p>
   </div>
 </div>
 
@@ -259,6 +131,147 @@ document.querySelectorAll(".sidebar a").forEach(link=>{
     👉 A is a Super Key
   </div>
 </div>
+
+<h2>📊 Attribute Closure Example (GATE Level)</h2>
+
+<p><b>Given Functional Dependencies:</b></p>
+
+<code>
+F = { A → B, C → D, AB → E, BE → C, EF → G }
+</code>
+
+---
+
+<h3>🎯 Goal</h3>
+
+<p>Find the following closures:</p>
+
+<ul>
+  <li>A⁺</li>
+  <li>AF⁺</li>
+  <li>AE⁺</li>
+  <li>CD⁺</li>
+</ul>
+
+---
+
+<h3>⚙️ Step-by-Step Rule</h3>
+
+<div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff;">
+👉 Start with given attributes → keep adding new attributes using FDs until no change
+</div>
+
+---
+
+<h3>🔍 Find A⁺</h3>
+
+<code>
+Start: A⁺ = {A}
+</code>
+
+<ul>
+  <li>A → B → add B</li>
+</ul>
+
+<code>
+A⁺ = {A, B}
+</code>
+
+<p>
+No more dependencies can be applied
+</p>
+
+<div style="background:#111827; padding:12px; border-radius:8px;">
+👉 A⁺ = {A, B}
+</div>
+
+---
+
+<h3>🔍 Find AF⁺</h3>
+
+<code>
+Start: AF⁺ = {A, F}
+</code>
+
+<ul>
+  <li>A → B → add B</li>
+  <li>AB → E → add E</li>
+  <li>BE → C → add C</li>
+  <li>C → D → add D</li>
+  <li>EF → G → add G</li>
+</ul>
+
+<code>
+AF⁺ = {A, F, B, E, C, D, G}
+</code>
+
+<div style="background:#111827; padding:12px; border-radius:8px;">
+👉 AF⁺ = {A, B, C, D, E, F, G}
+</div>
+
+---
+
+<h3>🔍 Find AE⁺</h3>
+
+<code>
+Start: AE⁺ = {A, E}
+</code>
+
+<ul>
+  <li>A → B → add B</li>
+  <li>BE → C → add C</li>
+  <li>C → D → add D</li>
+</ul>
+
+<code>
+AE⁺ = {A, E, B, C, D}
+</code>
+
+<div style="background:#111827; padding:12px; border-radius:8px;">
+👉 AE⁺ = {A, B, C, D, E}
+</div>
+
+---
+
+<h3>🔍 Find CD⁺</h3>
+
+<code>
+Start: CD⁺ = {C, D}
+</code>
+
+<ul>
+  <li>C → D (already present)</li>
+</ul>
+
+<code>
+CD⁺ = {C, D}
+</code>
+
+<p>No new attribute can be added</p>
+
+<div style="background:#111827; padding:12px; border-radius:8px;">
+👉 CD⁺ = {C, D}
+</div>
+
+---
+
+<h3>💣 Final Answer</h3>
+
+<ul>
+  <li>A⁺ = {A, B}</li>
+  <li>AF⁺ = {A, B, C, D, E, F, G}</li>
+  <li>AE⁺ = {A, B, C, D, E}</li>
+  <li>CD⁺ = {C, D}</li>
+</ul>
+
+<div style="background:#020617; padding:12px; border-radius:8px;">
+👉 AF⁺ gives all attributes → AF is a candidate key
+  <p><b>Learn more about </b>
+    <a style="color:yellow"href="keys.html#candidate">Candidate Key</a>
+</p>
+</div>
+
+
 
 <!-- OBSERVATIONS -->
 <div class="card" id="observations">
@@ -463,11 +476,29 @@ document.querySelectorAll(".sidebar a").forEach(link=>{
 <div class="card" style="text-align:center;">
 
   <h3>🚀 Continue Learning</h3>
-  <p>Move to the next topic: Coming soon</p>
+  <p>Practice and Test your knowledge:</p>
 
   <a href="question1.html" class="btn">
-    👉 Next Topic: Coming Soon→
+    👉Practice Questions →
   </a>
+
+</div>
+
+
+<div class="card">
+
+  <h2>🔗 Related Topics</h2>
+
+  <div class="related-links">
+    <a href="/gate/dbms/functional-dependency.html" class="btn">functional-dependency</a>
+
+    <a href="/gate/dbms/keys.html" class="btn">Keys in DBMS</a>
+
+    <a href="/gate/dbms/redundant_fd.html" class="btn">Redundant Functional Dependency</a>
+
+    <a href="/gate/dbms/canonical.html" class="btn">Canonical Cover in DBMS</a>
+
+  </div>
 
 </div>
 

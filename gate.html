@@ -7,6 +7,12 @@
 <!-- SEO -->
 <title>GATE 2026 Preparation, Syllabus & Notes for CSE | Future X</title>
 
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="./styles.css">
+
+
 <!-- 🔥 META SEO -->
 <meta name="description" content="Complete GATE 2026 preparation guide for CSE. Get syllabus, notes, strategy, and subject-wise preparation tips for GATE exam.">
 <meta name="keywords" content="GATE 2026, GATE CSE syllabus, GATE preparation, DBMS notes, OS notes, Future X">
@@ -63,7 +69,14 @@ html{
 .hamburger div { width:25px; height:3px; background:#00ffff; }
 
 @media(max-width:768px){
-  .nav-links { display:none; }
+  .nav-links {
+    display:flex;
+    gap:1rem;
+  }
+
+  .nav-links a:not(:first-child){
+    display:none;
+  }
 }
 
 /* CONTAINER */
@@ -123,6 +136,50 @@ footer {
   color:#777;
 }
 footer a { color:#00ffff; }
+
+
+nav {
+  position: sticky;
+  top: 0;
+  background: #111;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* LOGO */
+nav .logo {
+  display: flex;
+  align-items: center;
+}
+
+nav .logo img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0,255,255,0.5));
+  transition: 0.3s;
+}
+
+nav .logo img:hover {
+  transform: scale(1.05);
+}
+
+/* NAV LINKS */
+.nav-links a {
+  color: #ccc;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #00ffff;
+}
+
+
 </style>
 </head>
 
@@ -130,15 +187,21 @@ footer a { color:#00ffff; }
 
 <!-- NAVBAR -->
 <nav>
-  <div class="logo">Future X</div>
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="logo.png" alt="Future X Logo">
+  </div>
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="gate.html">GATE</a></li>
-    <li><a href="notes/dbms-notes.html">DBMS</a></li>
-  </ul>
+  <!-- LINKS -->
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="gate.html">GATE</a>
+    <a href="updates.html">Updates</a>
+    <a href="gate/gate-notes.html">Notes</a>
+  </div>
 
-  <button class="cta-btn">Login</button>
+  <!-- BUTTON -->
+  <!-- <button class="cta-btn">Login</button> -->
 </nav>
 
 <!-- INTRO -->

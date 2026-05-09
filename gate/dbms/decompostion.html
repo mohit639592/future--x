@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Decomposition in DBMS | Lossless & Dependency Preserving | Future X</title>
+  <meta name="description" content="Learn decomposition in DBMS with simple examples. Understand how decomposition removes anomalies using lossless and dependency preserving techniques.">
+  <meta name="keywords" content="decomposition in dbms, lossless decomposition, dependency preserving, normalization, dbms notes">
+  <meta name="author" content="Future X">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 👉 PASTE SAME CSS HERE (your existing CSS) */
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">
+    <img src="../../logo.png" alt="Future X">
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+  </ul>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Topics</h2>
+
+  <a href="dbms-anomalies.html">⬅️ Anomalies</a>
+  <a href="#intro">📘 Introduction</a>
+  <a href="#need">❗ Why Decomposition</a>
+  <a href="#example">📊 Example</a>
+  <a href="#types">📂 Types</a>
+  <a href="#lossless">🔗 Lossless</a>
+  <a href="#dependency">⚙️ Dependency Preserving</a>
+  <a href="#conclusion">✅ Conclusion</a>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- TITLE -->
+  <h1 style="color:#00ffff; margin-bottom:15px;">
+    Decomposition in DBMS
+  </h1>
+
+  <!-- INTRO -->
+  <p>
+    Decomposition is the process of breaking a large table into smaller tables 
+    to remove redundancy and avoid anomalies. It helps in designing a clean, 
+    efficient, and consistent database system.
+  </p>
+
+  <!-- LINK WITH ANOMALIES -->
+  <div class="card">
+    <h2>Why Do We Need Decomposition?</h2>
+
+    <p>
+      In the previous topic, we saw problems like insertion, update, and deletion anomalies.  
+      These issues occur because all data is stored in a single table.
+    </p>
+
+    <p>
+      Decomposition solves these problems by splitting the table into smaller, meaningful tables.
+    </p>
+
+    <a class="btn" href="dbms-anomalies.html">
+      ← Review Anomalies
+    </a>
+  </div>
+
+  <!-- EXAMPLE -->
+  <div class="card" id="example">
+
+    <h2>📊 Example (Before Decomposition)</h2>
+
+    <div class="table-wrapper">
+      <table>
+        <tr>
+          <th>StudentID</th>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Fee</th>
+        </tr>
+
+        <tr>
+          <td>101</td>
+          <td>Aditya</td>
+          <td>DBMS</td>
+          <td>₹4000</td>
+        </tr>
+
+        <tr>
+          <td>102</td>
+          <td>Anjali</td>
+          <td>DBMS</td>
+          <td>₹4000</td>
+        </tr>
+
+        <tr>
+          <td>101</td>
+          <td>Aditya</td>
+          <td>DM</td>
+          <td>₹3500</td>
+        </tr>
+      </table>
+    </div>
+
+    <p>
+      Here, course details are repeated multiple times, which can lead to anomalies.
+    </p>
+
+  </div>
+
+  <!-- AFTER -->
+  <div class="card">
+
+    <h2>✨ After Decomposition</h2>
+
+    <ul>
+      <li><b>Student Table:</b> StudentID, Name</li>
+      <li><b>Course Table:</b> Course, Fee</li>
+      <li><b>Enrollment Table:</b> StudentID, Course</li>
+    </ul>
+
+    <p>
+      Now data is separated properly and redundancy is removed.
+    </p>
+
+  </div>
+
+  <!-- TYPES -->
+  <div class="card" id="types">
+
+    <h2>Types of Decomposition</h2>
+
+    <ul>
+      <li>Lossless Decomposition</li>
+      <li>Dependency Preserving Decomposition</li>
+    </ul>
+
+  </div>
+
+  <!-- LOSSLESS -->
+  <div class="card" id="lossless">
+
+    <h2>🔗 Lossless Decomposition</h2>
+
+    <p>
+      Lossless decomposition ensures that no data is lost when we join the tables again.
+    </p>
+
+    <h3>💡 Simple Meaning</h3>
+    <p>
+      If we break a table and later join it back, we should get the exact original table.
+    </p>
+
+    <p style="color:#facc15; font-style:italic;">
+      "Break karo, but data kabhi lose nahi hona chahiye."
+    </p>
+
+  </div>
+
+  <!-- DEPENDENCY -->
+  <div class="card" id="dependency">
+
+    <h2>⚙️ Dependency Preserving</h2>
+
+    <p>
+      Dependency preserving means all functional dependencies should still be maintained 
+      after decomposition.
+    </p>
+
+    <h3>💡 Simple Meaning</h3>
+    <p>
+      We should not lose any relationship between attributes after splitting tables.
+    </p>
+
+    <p style="color:#facc15; font-style:italic;">
+      "Relations safe rehne chahiye, warna logic toot jayega."
+    </p>
+
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="card" id="conclusion">
+
+    <h2>Final Summary</h2>
+
+    <ul>
+      <li>Decomposition removes redundancy</li>
+      <li>Helps eliminate anomalies</li>
+      <li>Creates structured database design</li>
+      <li>Two main types: Lossless & Dependency Preserving</li>
+    </ul>
+
+    <p>
+      Decomposition is a key step in normalization and database design.
+    </p>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Future X | Built for Students 🚀</p>
+</footer>
+
+</body>
+</html>

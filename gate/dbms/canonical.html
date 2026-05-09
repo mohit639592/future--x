@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canonical Cover in DBMS (Minimal Cover Explained with Examples) | GATE Notes - Future X</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="style.css">
+
+
+<meta name="description" content="Learn Canonical Cover (Minimal Cover) in DBMS with step-by-step explanation, examples, and tricks. Important for GATE exam preparation.">
+<meta name="keywords" content="Canonical Cover DBMS, Minimal Cover DBMS, Functional Dependencies, GATE DBMS Notes, Extraneous Attribute">
+<!-- SCHEMA (SEO BOOST) -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Canonical Cover in DBMS",
+ "description": "Learn canonical cover with examples and GATE preparation",
+ "author": {
+   "@type": "Organization",
+   "name": "Future-X"
+ }
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+    <div class="logo">
+    <img src="../../logo.png" alt="Future X Logo">
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="/index.html">Home</a></li>
+  </ul>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h3 style="color:#00ffff;">Topics</h3>
+  <a href="#intro">📘 Introduction</a>
+  <a href="#uses">🎯 Uses</a>
+  <a href="#steps">⚙️ Steps</a>
+  <a href="#example">📊 Example</a>
+  <a href="#observations">🧠 Observations</a>
+  <a href="#mistakes">❌ Mistakes</a>
+  <a href="#prime">Prime Attribute</a>
+  <a href="#non-prime">Non Prime Attribute</a>
+</div>
+
+<div id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- JS -->
+<script>
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+
+document.querySelectorAll(".sidebar a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+  });
+});
+</script>
+
+
+<div class="container">
+    <div class="card" id="canonical_cover">
+
+
+
+
+  <h2>📘 Canonical Cover (Minimal Cover) in DBMS</h2>
+
+  <p>
+    Canonical Cover (also known as Minimal Cover) is the <b>simplified version of a set of Functional Dependencies (FDs)</b> 
+    such that it is equivalent to the original set but contains:
+  </p>
+
+  <ul>
+    <li>No redundant functional dependencies</li>
+    <li>No extraneous attributes</li>
+    <li>Each FD has a single attribute on RHS</li>
+  </ul>
+
+  <p>
+    👉 In simple words, Canonical Cover is the <b>smallest and most optimized set of FDs</b> 
+    that represents the same information as the original set.
+  </p>
+
+</div>
+
+<div class="card">
+
+  <h2>🚀 Why Canonical Cover is Important?</h2>
+
+  <ul>
+    <li>Helps in <b>database normalization</b></li>
+    <li>Used in <b>finding candidate keys</b></li>
+    <li>Removes unnecessary complexity</li>
+    <li>Very important for <b>GATE exams</b></li>
+  </ul>
+
+</div>
+
+<div class="card">
+
+<div class="card" id="canonical_cover">
+
+  <h2>📘 Canonical Cover (Minimal Cover) in DBMS</h2>
+
+  <p>
+    Canonical Cover (also called <b>Minimal Cover</b>) is the <b>simplified and optimized set of Functional Dependencies (FDs)</b> 
+    which is equivalent to the original set but contains no redundancy.
+  </p>
+
+  <p>
+    👉 It represents the <b>same information</b> as the original FD set but in the <b>most compact form</b>.
+  </p>
+
+  <h3>📌 Formal Definition</h3>
+  <p>
+    A Canonical Cover Fc of a set of functional dependencies F satisfies:
+  </p>
+
+  <ul>
+    <li>Every FD has a <b>single attribute on RHS</b></li>
+    <li>No <b>extraneous attribute</b> exists</li>
+    <li>No <b>redundant functional dependency</b> exists</li>
+    <li>Fc⁺ = F⁺ (closure remains same)</li>
+  </ul>
+
+  <p>
+    👉 This means Canonical Cover preserves <b>all dependencies</b> but removes unnecessary parts.
+  </p>
+
+</div>
+
+<div class="card">
+
+  <h2>🚀 Why Canonical Cover is Important?</h2>
+
+  <p>
+    Canonical Cover plays a very important role in database design and optimization.
+  </p>
+
+  <ul>
+    <li><b>Normalization:</b> Used in converting relations into 2NF, 3NF, BCNF</li>
+    <li><b>Remove Redundancy:</b> Eliminates duplicate or unnecessary dependencies</li>
+    <li><b>Efficient Design:</b> Makes schema cleaner and easier to understand</li>
+    <li><b>Query Optimization:</b> Reduces complexity while processing queries</li>
+    <li><b>GATE Importance:</b> Frequently asked in 1–2 mark questions</li>
+  </ul>
+
+</div>
+
+<div class="card">
+
+  <h2>⚙️ Steps to Find Canonical Cover (Step-by-Step)</h2>
+
+  <h3>Step 1: Convert RHS into Single Attribute</h3>
+
+  <p>
+    If any functional dependency has multiple attributes on RHS, split it into separate FDs.
+  </p>
+
+  <p><b>Example:</b></p>
+
+  <p>A → BC becomes:</p>
+  <ul>
+    <li>A → B</li>
+    <li>A → C</li>
+  </ul>
+
+  <p>
+    👉 This step ensures uniform structure.
+  </p>
+
+  <h3>Step 2: Remove Extraneous Attributes</h3>
+
+  <p><b>Learn more about </b>
+    <a style="color:yellow"href="redundant_fd.html">Extraneous Attribute</a>
+</p>
+  <p>
+    An attribute is extraneous if it can be removed without affecting the closure.
+  </p>
+
+  <p><b>Check in LHS:</b></p>
+  <p>
+    If (A,B) → C and A alone can determine C, then B is extraneous.
+  </p>
+
+  <p><b>Check in RHS:</b></p>
+  <p>
+    If A → BC and A → B already exists, then C might be extraneous.
+  </p>
+
+  <p>
+    👉 Remove such attributes carefully.
+  </p>
+
+  <h3>Step 3: Remove Redundant Functional Dependencies</h3>
+   <p><b>Learn more about </b>
+    <a style="color:yellow"href="redundant_fd.html">Redundant Functional Dependency</a>
+</p>
+
+  <p>
+    A functional dependency is redundant if it can be derived from other dependencies.
+  </p>
+
+  <p><b>Example:</b></p>
+  <p>
+    If A → B and B → C, then A → C is redundant.
+  </p>
+
+  <p>
+    👉 Remove such dependencies to simplify the set.
+  </p>
+
+</div>
+
+<div class="card">
+
+  <h2>🧩 Complete Example (GATE Level)</h2>
+
+  <p><b>Given FD Set:</b></p>
+
+  <ul>
+    <li>A → BC</li>
+    <li>B → C</li>
+    <li>A → B</li>
+  </ul>
+
+  <h3>Step 1: Split RHS</h3>
+
+  <ul>
+    <li>A → B</li>
+    <li>A → C</li>
+    <li>B → C</li>
+  </ul>
+
+  <h3>Step 2: Check Extraneous Attributes</h3>
+  <b>Learn more about </b>
+    <a style="color:yellow"href="redundant_fd.html">Extraneous Attribute</a>
+
+  <p>
+    No extra attributes in LHS here.
+  </p>
+
+  <h3>Step 3: Remove Redundant FD</h3>
+  <b>Learn more about </b>
+    <a style="color:yellow"href="redundant_fd.html">Redundant FD</a>
+
+  <p>
+    A → C is redundant because:
+  </p>
+
+  <p>
+    A → B and B → C ⇒ A → C (Transitivity)
+  </p>
+
+  <h3>✅ Final Canonical Cover:</h3>
+
+  <ul>
+    <li>A → B</li>
+    <li>B → C</li>
+  </ul>
+
+</div>
+
+<div class="card">
+
+  <h2>💣 Another Example (Important for Exams)</h2>
+
+  <p><b>Given:</b></p>
+
+  <ul>
+    <li>AB → C</li>
+    <li>A → C</li>
+  </ul>
+
+  <h3>Check Extraneous Attribute</h3>
+  <b>Learn more about </b>
+    <a style="color:yellow"href="redundant_fd.html">Extraneous Attribute</a>
+
+  <p>
+    In AB → C, attribute B is extraneous because A alone determines C.
+  </p>
+
+  <p>
+    So, AB → C becomes A → C
+  </p>
+
+  <h3>Final Canonical Cover:</h3>
+
+  <ul>
+    <li>A → C</li>
+  </ul>
+
+</div>
+
+<div class="card">
+
+  <h2>⚠️ Common Mistakes (Very Important)</h2>
+
+  <ul>
+    <li>Forgetting to split RHS</li>
+    <li>Removing dependency without checking closure</li>
+    <li>Confusing extraneous attribute with redundancy</li>
+    <li>Not verifying Fc⁺ = F⁺</li>
+  </ul>
+
+</div>
+
+<div class="card">
+
+  <h2>🔥 Quick Summary</h2>
+
+  <table>
+    <tr>
+      <th>Concept</th>
+      <th>Meaning</th>
+    </tr>
+    <tr>
+      <td>Canonical Cover</td>
+      <td>Smallest equivalent FD set</td>
+    </tr>
+    <tr>
+      <td>Goal</td>
+      <td>Remove redundancy</td>
+    </tr>
+    <tr>
+      <td>Steps</td>
+      <td>Split → Remove Extraneous → Remove Redundant</td>
+    </tr>
+    <tr>
+      <td>Use</td>
+      <td>Normalization & GATE</td>
+    </tr>
+  </table>
+
+</div>
+
+<div class="card" style="text-align:center;">
+  <h3>🚀 Continue Learning</h3>
+  <a href="anomalies.html" class="btn">
+    👉 Next Topic: Anomalies →
+  </a>
+</div>
+
+<div class="card">
+
+  <h2>🔗 Related Topics</h2>
+
+  <div class="related-links">
+
+    <a href="/gate/dbms/clouser.html" class="btn">Closure of Attributes</a>
+
+    <a href="/gate/dbms/keys.html" class="btn">Keys in DBMS</a>
+
+    <a href="/gate/dbms/clouser.html" class="btn">Closure of Attributes</a>
+
+    <a href="/gate/dbms/redundant_fd.html" class="btn">Redundant Functional Dependency</a>
+
+
+  </div>
+
+</div>
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>DBMS Anomalies Explained (Insertion, Update, Deletion) | Future X</title>
+
+    <meta name="description" content="Learn DBMS anomalies (Insertion, Update, Deletion) with simple real-life examples and tables. Understand problems in database design and how to remove anomalies using normalization and decomposition.">
+
+    <meta name="keywords" content="DBMS anomalies, insertion anomaly, update anomaly, deletion anomaly, normalization, decomposition, DBMS notes, GATE DBMS">
+
+    <meta name="author" content="Future X">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+
+  <style>
+    /* TABLE FIX */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+}
+
+/* Smooth scroll feel */
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #00ffff;
+  border-radius: 10px;
+}
+
+table {
+  min-width: 700px;
+  border-collapse: collapse;
+}
+
+th {
+  color: #00ffff;
+  font-weight: 600;
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 12px;
+  color: #ccc;
+}
+
+/* Better row spacing */
+tr {
+  border-bottom: 1px solid #222;
+}
+
+/* Mobile improvements */
+@media (max-width: 768px) {
+  table {
+    font-size: 13px;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+}
+  </style>
+</head>
+
+
+
+<body>
+
+<nav>
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+    <div class="logo">
+    <img src="../../logo.png" alt="Future X Logo">
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="/index.html">Home</a></li>
+  </ul>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h3 style="color:#00ffff;">Topics</h3>
+    <a href="#">🏠 DBMS Home</a>
+    <a href="#intro">📘 Introduction</a>
+    <a href="#types">📂 Types of Anomalies</a>
+    <a href="#insertion">➕ Insertion Anomaly</a>
+    <a href="#update">🔄 Update Anomaly</a>
+    <a href="#deletion">🗑️ Deletion Anomaly</a>
+    <a href="#solution">🛠️ Solution</a>
+    <a href="#Doubt">🛠️ Asked Questions</a>
+    <a href="#Summary">📘 Final Summary</a>
+</div>
+
+<div id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- JS -->
+<script>
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+
+document.querySelectorAll(".sidebar a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+  });
+});
+</script>
+
+<!-- CONTENT -->
+<div class="container">
+    <h2 style="color:#00ffff; margin-bottom:15px;">
+DBMS Anomalies (Insertion, Update, Deletion)
+</h2>
+    <p>
+Learn DBMS anomalies (Insertion, Update, Deletion) in a simple and practical way.
+This guide explains real-world problems in database design and how they lead to data inconsistency,
+redundancy, and data loss. You will also learn how to solve these issues using normalization and decomposition.
+</p>
+
+  <!-- INTRO -->
+  <div class="card" id="intro">
+    <h2>What are Anomalies in DBMS?</h2>
+
+    <p>
+      Anomalies in DBMS are problems that occur when a database is not properly structured.
+      These problems lead to data inconsistency, redundancy, and loss of information.
+    </p>
+
+    <p>
+      Anomalies mainly occur in unnormalized tables where data is stored inefficiently.
+    </p>
+  </div>
+
+  <!-- EXAMPLE TABLE -->
+  <div  class="table-wrapper">
+    <h2>Example Table</h2>
+
+    <table>
+       <tr>
+      <th>StudentID</th>
+      <th>StudentName</th>
+      <th>City</th>
+      <th>CourseCode</th>
+      <th>CourseName</th>
+      <th>CourseFee</th>
+    </tr>
+
+    <tr>
+      <td>501</td>
+      <td>Ayush</td>
+      <td>Mumbai</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>502</td>
+      <td>Anuj</td>
+      <td>Bihar</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>503</td>
+      <td>Vijay</td>
+      <td>Kota</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>504</td>
+      <td>Riya</td>
+      <td>Bihar</td>
+      <td>ML-2</td>
+      <td>Machine Learning</td>
+      <td>₹5000</td>
+    </tr>
+
+    <tr>
+      <td>505</td>
+      <td>Aarti</td>
+      <td>Patna</td>
+      <td>CD-1</td>
+      <td>Coding</td>
+      <td>₹10000</td>
+    </tr>
+    </table>
+
+    <p>This table will help us understand different anomalies.</p>
+  </div>
+
+  <!-- TYPES -->
+  <div class="card" id="types">
+    <h2>Types of Anomalies</h2>
+    <ul>
+      <li>Insertion Anomaly</li>
+      <li>Update Anomaly</li>
+      <li>Deletion Anomaly</li>
+    </ul>
+  </div>
+
+  <!-- INSERTION -->
+ <div class="card" id="insertion">
+
+  <h2>Insertion Anomaly in DBMS</h2>
+
+  <p>
+    Insertion anomaly occurs when we are unable to add new data into the database
+    without entering unnecessary or unavailable information.
+  </p>
+
+  <h3>📊 Real-World Example</h3>
+<div class="table-wrapper">
+  <table>
+     <tr>
+      <th>StudentID</th>
+      <th>StudentName</th>
+      <th>City</th>
+      <th>CourseCode</th>
+      <th>CourseName</th>
+      <th>CourseFee</th>
+    </tr>
+
+    <tr>
+      <td>501</td>
+      <td>Ayush</td>
+      <td>Mumbai</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>502</td>
+      <td>Anuj</td>
+      <td>Bihar</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>503</td>
+      <td>Vijay</td>
+      <td>Kota</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>➕ Situation</h3>
+
+  <p>
+    The college wants to introduce a new course 
+    <b>"Machine Learning"</b> (Code: ML-2) with a fee of 
+    <span style="color:#00ffff;">₹8000</span>.
+  </p>
+
+  <h3>⚠️ What’s the Problem?</h3>
+
+  <p>
+    No student has enrolled in this course yet.  
+    Since the table requires a <b>StudentID</b>, we cannot insert this new course
+    without adding fake or NULL student data.
+  </p>
+
+  <h3>🚨 The Risk</h3>
+
+  <p>
+    If <b>StudentID</b> is a primary key, it cannot be NULL.  
+    This means the database will not allow inserting the new course at all.
+  </p>
+
+  <p style="color:#facc15; font-style:italic;">
+    "A new course has been launched, but the college cannot add it to the database because no student has enrolled yet."
+  </p>
+
+  <h3>✅ Final Understanding</h3>
+
+  <p>
+    This situation is called <b>Insertion Anomaly</b>.  
+    It occurs when the database structure forces us to enter unnecessary data
+    just to insert valid information.
+  </p>
+
+</div>
+
+  <!-- UPDATE -->
+  <div class="card" id="update">
+
+  <h2>Update Anomaly in DBMS</h2>
+
+  <p>
+    Update anomaly occurs when the same data is stored in multiple rows and we need to update it everywhere.
+    If we miss even one place, the database becomes inconsistent.
+  </p>
+
+  <h3>📊 Real-Life Scenario</h3>
+<div class="table-wrapper">
+  <table>
+    <tr>
+      <th>StudentID</th>
+      <th>StudentName</th>
+      <th>City</th>
+      <th>CourseCode</th>
+      <th>CourseName</th>
+      <th>CourseFee</th>
+    </tr>
+
+    <tr>
+      <td>501</td>
+      <td>Ayush</td>
+      <td>Mumbai</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>502</td>
+      <td>Anuj</td>
+      <td>Bihar</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>503</td>
+      <td>Vijay</td>
+      <td>Kota</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>504</td>
+      <td>Riya</td>
+      <td>Bihar</td>
+      <td>ML-2</td>
+      <td>Machine Learning</td>
+      <td>₹5000</td>
+    </tr>
+
+    <tr>
+      <td>505</td>
+      <td>Aarti</td>
+      <td>Patna</td>
+      <td>CD-1</td>
+      <td>Coding</td>
+      <td>₹10000</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>⚠️ Scenario Change</h3>
+
+  <p>
+    The college decides to increase the DBMS course fee from 
+    <span style="color:#00ffff;">₹7000 → ₹8000</span>.
+  </p>
+
+  <h3>❗ The Problem</h3>
+
+  <p>
+    The course "DBMS" appears in multiple rows.  
+    You must update the fee for <b>Ayush,Anuj, and Vijay</b> separately.
+  </p>
+
+  <h3>🚨 The Risk</h3>
+
+  <p>
+    If you update only two rows and forget one, the database will show 
+    <span style="color:#00ffff;">different fees for the same course</span>.
+  </p>
+
+  <p style="color:#facc15; font-style:italic;">
+   "How can the same course have different fees in one college?"
+  </p>
+
+  <h3>✅ Conclusion</h3>
+
+  <p>
+    This inconsistency is called <b>Update Anomaly</b>.  
+    It happens due to data redundancy and poor table design.
+  </p>
+
+</div>
+
+
+  <!-- DELETION -->
+  <div class="card" id="deletion">
+
+  <h2>Deletion Anomaly in DBMS</h2>
+
+  <p>
+    Deletion anomaly occurs when removing a record also deletes other important
+    information unintentionally from the database.
+  </p>
+
+  <h3>📊 Real-World Example</h3>
+<div class="table-wrapper">
+  <table>
+       <tr>
+      <th>StudentID</th>
+      <th>StudentName</th>
+      <th>City</th>
+      <th>CourseCode</th>
+      <th>CourseName</th>
+      <th>CourseFee</th>
+    </tr>
+
+    <tr>
+      <td>501</td>
+      <td>Ayush</td>
+      <td>Mumbai</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>502</td>
+      <td>Anuj</td>
+      <td>Bihar</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>503</td>
+      <td>Vijay</td>
+      <td>Kota</td>
+      <td>DB-1</td>
+      <td>DBMS</td>
+      <td>₹7000</td>
+    </tr>
+
+    <tr>
+      <td>504</td>
+      <td>Riya</td>
+      <td>Bihar</td>
+      <td>ML-2</td>
+      <td>Machine Learning</td>
+      <td>₹5000</td>
+    </tr>
+
+    <tr>
+      <td>505</td>
+      <td>Aarti</td>
+      <td>Patna</td>
+      <td>CD-1</td>
+      <td>Coding</td>
+      <td>₹10000</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>🗑️ Situation</h3>
+
+  <p>
+    Riya is the only student enrolled in the course 
+    <b>MACHINE LEARNING (ML-2)</b>.  
+    He decides to drop the course.
+  </p>
+
+  <h3>⚠️ What’s the Problem?</h3>
+
+  <p>
+    When we delete Riya’s record, we also remove the only row that contains
+    information about the ML course.
+  </p>
+
+  <h3>🚨 The Risk</h3>
+
+  <p>
+    As a result, details like 
+    <span style="color:#00ffff;">course name, code, and fee</span> 
+    are completely lost from the database.
+  </p>
+
+  <p style="color:#facc15; font-style:italic;">
+   "When the student leaves the course, the entire course information about the course is removed from the database."
+  </p>
+
+  <h3>✅ Final Understanding</h3>
+
+  <p>
+    This is called <b>Deletion Anomaly</b>.  
+    It happens when deleting one piece of data unintentionally removes other valuable information.
+  </p>
+
+</div>
+
+<div class="card" id="Summary">
+  <h2>Final Summary</h2>
+
+  <p>
+    Anomalies occur due to poor database design and lead to data redundancy and inconsistency.
+  </p>
+
+  <ul>
+    <li>Insertion Anomaly → Cannot add new data properly</li>
+    <li>Update Anomaly → Same data must be updated in multiple places</li>
+    <li>Deletion Anomaly → Important data may be lost unintentionally</li>
+  </ul>
+
+  <p>
+    These problems can be solved by applying normalization and decomposition techniques.
+  </p>
+</div>
+
+
+<div class="card" id="Doubt">
+  <h2>Frequently Asked Questions</h2>
+
+  <p><b>What are anomalies in DBMS?</b><br>
+  Anomalies are problems that occur due to poor database design, leading to inconsistency and redundancy.</p>
+
+  <p><b>Why do anomalies occur?</b><br>
+  They occur because of repeated data and improper table structure.</p>
+
+  <p><b>How can anomalies be removed?</b><br>
+  By using normalization and decomposition techniques.</p>
+</div>
+
+
+  <!-- SOLUTION -->
+<div class="card" id="solution">
+
+  <h2>How to Remove Anomalies in DBMS?</h2>
+
+  <p>
+    Anomalies occur because data is stored in a single table with repetition.
+    The solution is to organize the database in a way that avoids redundancy
+    and keeps data consistent.
+  </p>
+
+  <h3>🛠️ The Solution: Normalization</h3>
+
+  <p>
+    Normalization is a process of structuring a database into smaller, well-organized tables.
+    It ensures that each piece of information is stored only once.
+  </p>
+
+  <h3>📂 Decomposition (Breaking the Table)</h3>
+
+  <p>
+    In decomposition, we divide a large table into multiple smaller tables based on their relationships.
+    Each table focuses on a specific type of data.
+  </p>
+
+  <h3>📊 Example (Before vs After)</h3>
+
+  <p><b>Before (Single Table):</b></p>
+  <ul>
+    <li>Student + Course data stored together</li>
+    <li>Repeated course information</li>
+    <li>High chances of anomalies</li>
+  </ul>
+
+  <p><b>After (Decomposed Tables):</b></p>
+  <ul>
+    <li><b>Student Table:</b> StudentID, Name, City</li>
+    <li><b>Course Table:</b> CourseCode, CourseName, Fee</li>
+    <li><b>Enrollment Table:</b> StudentID, CourseCode</li>
+  </ul>
+
+  <h3>✅ Why This Works</h3>
+
+  <ul>
+    <li>No duplicate data → avoids update anomaly</li>
+    <li>Can insert courses independently → avoids insertion anomaly</li>
+    <li>Deleting a student does not remove course data → avoids deletion anomaly</li>
+  </ul>
+
+  <p style="color:#facc15; font-style:italic;">
+    "Data ko alag-alag jagah organize karo, taaki ek change se poora system disturb na ho."
+  </p>
+
+  <h3>🎯 Final Understanding</h3>
+
+  <p>
+    By using normalization and decomposition, we design a database that is
+    clean, efficient, and free from anomalies.
+  </p>
+
+<a href="/gate/dbms/decompostion.html" class="btn">Decomposition</a>
+
+</div>
+
+
+<div class="card">
+
+  <h2>🔗 Related Topics</h2>
+
+  <div class="related-links">
+
+    <a href="/gate/dbms/functional-dependency.html" class="btn">functional-dependency</a>
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Future X | Built for Students 🚀</p>
+</footer>
+
+<!-- SCRIPT -->
+<script>
+  const menuBtn = document.querySelector(".menu-btn");
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+
+  menuBtn.onclick = () => {
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+  };
+
+  overlay.onclick = () => {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+  };
+</script>
+
+</body>
+</html>

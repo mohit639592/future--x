@@ -4,157 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Functional Dependency | Future-X</title>
-
-<style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-body { background:#0a0a0a; color:#fff; line-height:1.6; }
-
-/* NAV */
-nav {
-  position:sticky; top:0; background:#111;
-  padding:0.8rem 2rem;
-  display:flex; justify-content:space-between; align-items:center;
-}
-.logo { font-size:1.8rem; color:#00ffff; font-weight:700; }
-
-.nav-links {
-  list-style:none;
-  display:flex;
-  gap:1.5rem;
-}
-.btn {
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 20px;
-  background:#00ffff;
-  color:black;
-  border-radius:5px;
-  text-decoration:none;
-}
-.nav-links a { color:#ccc; text-decoration:none; }
-
-/* MENU BUTTON */
-.menu-btn {
-  display:none;
-  font-size:22px;
-  color:#00ffff;
-  cursor:pointer;
-}
-
-/* SIDEBAR */
-.sidebar {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  width: 240px;
-  height: 100%;
-  background: #0d0d0d;
-  padding: 20px 15px;
-  border-right: 1px solid #222;
-
-  transform: translateX(0);
-  transition: transform 0.35s ease-in-out;
-  z-index: 1001;
-}
-
-.sidebar a {
-  display:block;
-  color:#aaa;
-  margin:8px 0;
-  padding:8px 10px;
-  border-radius:6px;
-  text-decoration:none;
-}
-
-.sidebar a:hover {
-  background:#111827;
-  color:#00ffff;
-}
-
-/* OVERLAY */
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.3);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-  z-index: 1000;
-}
-
-#overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* CONTENT */
-.container {
-  max-width:1100px;
-  margin:50px auto;
-  padding:20px;
-  margin-left:260px;
-}
-
-.card {
-  background:#111;
-  padding:25px;
-  margin-bottom:20px;
-  border-radius:10px;
-}
-
-.card h2 { color:#00ffff; margin-bottom:10px; }
-.card h3 { color:#38bdf8; margin-top:15px; }
-.card p, .card li { color:#ccc; }
-
-table {
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
-th, td { padding:10px; text-align:left; }
-tr { border-bottom:1px solid #333; }
-
-footer {
-  background:#111;
-  padding:30px;
-  text-align:center;
-  color:#777;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .menu-btn { display:block; }
-
-  .sidebar {
-    transform: translateX(-100%);
-  }
-
-  .sidebar.active {
-    transform: translateX(0);
-  }
-
-  .container {
-    margin-left:0;
-  }
-}
-footer {
-  background:#111;
-  padding:30px;
-  text-align:center;
-  color:#777;
-}
-html { scroll-behavior:smooth; }
-</style>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <nav>
   <div class="menu-btn" onclick="toggleSidebar()">☰</div>
-  <div class="logo">Future-X</div>
+    <div class="logo">
+    <img src="../../logo.png" alt="Future X Logo">
+  </div>
 
   <ul class="nav-links">
     <li><a href="/index.html">Home</a></li>
@@ -245,6 +107,133 @@ sidebarLinks.forEach(link => {
     👉 STUD_ID uniquely determines NAME and DEPT
   </div>
 </div>
+
+
+
+<h2>📊 Functional Dependency Example (GATE Level)</h2>
+
+<p><b>Given Table:</b></p>
+
+<table>
+<tr style="background:#1f2937;">
+  <th>A</th>
+  <th>B</th>
+  <th>C</th>
+</tr>
+
+<tr><td>1</td><td>4</td><td>2</td></tr>
+<tr><td>3</td><td>5</td><td>6</td></tr>
+<tr><td>3</td><td>4</td><td>6</td></tr>
+<tr><td>7</td><td>3</td><td>8</td></tr>
+<tr><td>9</td><td>1</td><td>0</td></tr>
+</table>
+
+---
+
+<h3>🎯 Goal</h3>
+
+<p>
+Check whether the following functional dependencies hold:
+</p>
+
+<ul>
+  <li>AB → C ?</li>
+  <li>BC → A ?</li>
+  <li>AC → B ?</li>
+</ul>
+
+---
+
+<h3>⚙️ Rule to Check Functional Dependency</h3>
+
+<div style="background:#0f172a; padding:12px; border-left:4px solid #00ffff;">
+👉 If two rows have same LHS values, then RHS must also be same
+</div>
+
+---
+
+<h3>🔍 Check AB → C</h3>
+
+<p>
+Check rows where (A, B) are same:
+</p>
+
+<ul>
+  <li>No two rows have same (A, B)</li>
+</ul>
+
+<p>
+👉 No violation found
+</p>
+
+<div style="background:#111827; padding:12px; border-radius:8px;">
+✅ AB → C holds
+</div>
+
+---
+
+<h3>🔍 Check BC → A</h3>
+
+<p>
+Check rows where (B, C) are same:
+</p>
+
+<ul>
+  <li>No repeated (B, C) pairs</li>
+</ul>
+
+<p>
+👉 No violation found
+</p>
+
+<div style="background:#111827; padding:12px; border-radius:8px;">
+✅ BC → A holds
+</div>
+
+---
+
+<h3>🔍 Check AC → B</h3>
+
+<p>
+Check rows where (A, C) are same:
+</p>
+
+<ul>
+  <li>(3, 6) appears twice</li>
+</ul>
+
+<p>
+Check corresponding B values:
+</p>
+
+<ul>
+  <li>(3, 6) → B = 5</li>
+  <li>(3, 6) → B = 4</li>
+</ul>
+
+<p>
+Since same (A, C) gives different B values → violation occurs
+</p>
+
+<div style="background:#111827; padding:12px; border-radius:8px;">
+❌ AC → B does NOT hold
+</div>
+
+---
+
+<h3>💣 Final Answer</h3>
+
+<ul>
+  <li>AB → C ✔ Holds</li>
+  <li>BC → A ✔ Holds</li>
+  <li>AC → B ❌ Does NOT Hold</li>
+</ul>
+
+<div style="background:#020617; padding:12px; border-radius:8px;">
+👉 Final Conclusion: Only AC → B is violated
+</div>
+
+
 
 <!-- TYPES -->
 <div class="card" id="types">
@@ -432,6 +421,24 @@ sidebarLinks.forEach(link => {
   <a href="clouser.html" class="btn">
     👉 Next Topic: Clouser →
   </a>
+</div>
+
+<div class="card">
+
+  <h2>🔗 Related Topics</h2>
+
+  <div class="related-links">
+
+    <a href="/gate/dbms/clouser.html" class="btn">Closure of Attributes</a>
+
+    <a href="/gate/dbms/keys.html" class="btn">Keys in DBMS</a>
+
+    <a href="/gate/dbms/redundant_fd.html" class="btn">Redundant Functional Dependency</a>
+
+    <a href="/gate/dbms/canonical.html" class="btn">Canonical Cover in DBMS</a>
+
+  </div>
+
 </div>
 
 </div>

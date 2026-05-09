@@ -5,73 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>DBMS Notes for GATE | Complete Guide, Topics, Strategy - Future X</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" href="style.css">
+
 
 <meta name="description" content="Complete DBMS notes for GATE. Learn normalization, SQL, transactions, ER model, indexing, weightage, and preparation strategy.">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-<style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-body { background:#0a0a0a; color:#fff; line-height:1.6; }
-
-nav {
-  position:sticky; top:0; background:#111;
-  padding:0.8rem 2rem;
-  display:flex; justify-content:space-between; align-items:center;
-}
-.logo { font-size:1.8rem; color:#00ffff; font-weight:700; }
-
-.nav-links {
-  list-style:none;
-  display:flex;
-  gap:1.5rem;
-}
-.nav-links a { color:#ccc; text-decoration:none; }
-
-.container {
-  max-width:1100px;
-  margin:50px auto;
-  padding:20px;
-}
-
-.card {
-  background:#111;
-  padding:25px;
-  margin-bottom:20px;
-  border-radius:10px;
-}
-
-.card h2 { color:#00ffff; margin-bottom:10px; }
-.card p, .card li { color:#ccc; }
-
-.btn {
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 20px;
-  background:#00ffff;
-  color:black;
-  border-radius:5px;
-  text-decoration:none;
-}
-
-footer {
-  background:#111;
-  padding:30px;
-  text-align:center;
-  color:#777;
-}
-</style>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
 <nav>
-  <div class="logo">Future X</div>
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+    <div class="logo">
+    <img src="../../logo.png" alt="Future X Logo">
+  </div>
 
   <ul class="nav-links">
     <li><a href="/index.html">Home</a></li>
-    <li><a href="/gate/">GATE</a></li>
   </ul>
 </nav>
 
@@ -152,6 +107,31 @@ footer {
     <a href="/gate/dbms/clouser.html" class="btn">Clouser</a>
   </div>
 
+  <div class="card">
+    <h2>Practice Questions</h2>
+    <p>
+      Gate PYQ question (Attribute Closure, Super Key & Candidate Key Questions with Solutions)
+    </p>
+    <a href="/gate/dbms/question1.html" class="btn">Practice</a>
+  </div>
+
+
+    <div class="card">
+    <h2>Redundant Fd and Extraneous Attributes</h2>
+    <p>
+      Lean how to remove redundant FD and Extraneous Attributes
+    </p>
+    <a href="/gate/dbms/redundant_fd.html" class="btn">Redundant FD</a>
+  </div>
+
+
+  <div class="card">
+    <h2>Minimal Cover (Canonical cover)</h2>
+    <p>
+      Lean how to solve canonical cover questions with example
+    </p>
+    <a href="/gate/dbms/canonical.html" class="btn">canonical cover</a>
+  </div>
 
   <div class="card">
     <h2>Normalization</h2>

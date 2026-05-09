@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Future X – Free GATE Preparation Platform</title>
+  <meta name="description" content="Learn about Future X, a modern platform for GATE preparation with notes, PYQs, and practice questions. Built for students by a student.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+  <style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* BODY */
+body {
+  background: linear-gradient(135deg, #050505, #0a0a0a);
+  color: #fff;
+  line-height: 1.7;
+}
+
+/* HERO */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: radial-gradient(circle at center, #0f172a, #020617);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: #00ffff;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px rgba(0,255,255,0.5);
+}
+
+.hero p {
+  color: #aaa;
+  max-width: 700px;
+  font-size: 1.1rem;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 20px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #00ffff, #00bfff);
+  color: #000;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,255,255,0.6);
+}
+
+/* SECTION */
+section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00ffff;
+}
+
+section p {
+  text-align: center;
+  color: #bbb;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+/* CARD */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 15px;
+  transition: 0.3s;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+}
+
+.card h3 {
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #ccc;
+  text-align: left;
+}
+
+/* CTA SECTION */
+section:last-of-type {
+  text-align: center;
+}
+
+/* FOOTER */
+footer {
+  background: #020617;
+  padding: 25px;
+  text-align: center;
+  color: #777;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+footer a {
+  color: #00ffff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  section h2 {
+    font-size: 1.6rem;
+  }
+}
+</style>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>About Future X 🚀</h1>
+  <p>
+    A modern platform designed to simplify GATE preparation and help students learn smarter, not harder.
+  </p>
+
+  <div>
+    <button class="btn btn-primary">Start Learning</button>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section>
+  <h2>Our Mission 🎯</h2>
+  <p>
+    At Future X, our mission is simple — to provide high-quality, easy-to-understand, and exam-focused content for students preparing for competitive exams like GATE.
+    We believe that education should not be complicated. Instead of overwhelming students with unnecessary information, we focus only on what truly matters.
+  </p>
+
+  <p>
+    Our aim is to remove confusion, simplify concepts, and provide a structured path so that every student can prepare with clarity and confidence.
+  </p>
+</section>
+
+<!-- WHAT WE OFFER -->
+<section>
+  <h2>What We Offer 💡</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>📘 Smart Notes</h3>
+      <p>
+        Simple, clear, and exam-oriented notes that help you understand concepts quickly without wasting time.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>📝 GATE PYQs</h3>
+      <p>
+        Previous year questions with proper explanation to help you understand real exam patterns.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>📊 Practice Questions</h3>
+      <p>
+        Carefully designed practice questions to strengthen your concepts and boost confidence.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🧭 Structured Learning</h3>
+      <p>
+        Topics arranged in a proper sequence so you always know what to study next.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY FUTURE X -->
+<section>
+  <h2>Why Future X? 🔥</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>⚡ Simple Language</h3>
+      <p>
+        We explain complex topics in a very simple and easy-to-understand way.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🎯 Exam Focused</h3>
+      <p>
+        Content is designed specifically for exams like GATE, not just theoretical knowledge.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>💯 No Time Waste</h3>
+      <p>
+        Only important concepts are covered — no unnecessary theory or distractions.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🚀 Built for Students</h3>
+      <p>
+        Everything is designed keeping real student problems in mind.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- VISION -->
+<section>
+  <h2>Our Vision 🌟</h2>
+  <p>
+    We aim to build Future X into a complete learning ecosystem where students can study, practice, and track their progress — all in one place.
+    In the future, we plan to expand into multiple subjects, add advanced features, and create a platform that truly supports students throughout their journey.
+  </p>
+</section>
+
+<!-- FOUNDER -->
+<section>
+  <h2>Founder’s Note 👨‍💻</h2>
+  <p>
+    Future X is built from real student experience, focusing on solving the actual problems faced during exam preparation. The platform is designed with insights inspired by experienced educators, helping identify where students commonly struggle and where doubts are most likely to arise, so that learning becomes clearer and more effective.
+  </p>
+
+  <p>
+    During preparation, one common problem was clear — most platforms either provide too much unnecessary content or fail to explain concepts properly.
+    This creates confusion and wastes valuable time.
+  </p>
+
+  <p>
+    Future X was created to solve this problem.
+    The goal is to provide exactly what a student needs — no more, no less.
+    Simple explanations, important questions, and a clear path to follow.
+  </p>
+
+  <p>
+    This is just the beginning. Future X will continue to grow and improve with time.
+  </p>
+</section>
+
+<!-- CTA -->
+<section>
+  <h2>Start Your Journey 🚀</h2>
+  <p>
+    Stop wasting time on scattered resources. Start learning with clarity and confidence.
+  </p>
+
+  <button class="btn btn-primary">Explore Notes</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Future X | Built for Students 🚀</p>
+</footer>
+
+</body>
+</html>
